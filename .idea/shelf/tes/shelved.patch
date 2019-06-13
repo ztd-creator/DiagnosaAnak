@@ -1,0 +1,4557 @@
+Index: app/src/main/java/com/example/diagnosaanak/PenyakitAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/PenyakitAdapter.java	(date 1556547252000)
++++ app/src/main/java/com/example/diagnosaanak/PenyakitAdapter.java	(date 1556547252000)
+@@ -0,0 +1,65 @@
++package com.example.diagnosaanak;
++
++
++import android.app.Activity;
++import android.content.Context;
++import android.content.Intent;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.BaseAdapter;
++import android.widget.TextView;
++
++import androidx.cardview.widget.CardView;
++
++import java.util.ArrayList;
++
++public class PenyakitAdapter extends BaseAdapter {
++    private Activity activity;
++    //private ArrayList<HashMap<String, String>> data;
++    private ArrayList<Penyakit> data_penyakit=new ArrayList<Penyakit>();
++
++    private static LayoutInflater inflater = null;
++
++    public PenyakitAdapter(Activity a, ArrayList<Penyakit> d) {
++        activity = a;
++        data_penyakit = d;
++        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
++    }
++    public int getCount() {
++        return data_penyakit.size();
++    }
++    public Object getItem(int position) {
++        return data_penyakit.get(position);
++    }
++    public long getItemId(int position) {
++        return position;
++    }
++
++    public View getView(int position, View convertView, ViewGroup parent) {
++        View view = convertView;
++        if (convertView == null)
++            view = inflater.inflate(R.layout.list_nama_penyakit, null);
++        TextView kode_penyakit = (TextView) view.findViewById(R.id.kode_penyakit);
++        TextView nama_penyakit = (TextView) view.findViewById(R.id.nama_penyakit);
++        //TextView nim_mhs = (TextView) vi.findViewById(R.id.nim_mhs);
++
++        Penyakit daftar_penyakit = data_penyakit.get(position);
++        kode_penyakit.setText(daftar_penyakit.getKode_penyakit());
++        final String kode = daftar_penyakit.getKode_penyakit();
++        nama_penyakit.setText(daftar_penyakit.getNama_penyakit());
++        CardView cardClick = (CardView) view.findViewById(R.id.cardClick);
++        cardClick.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Intent intent = new Intent(PenyakitAdapter.inflater.getContext(), ActivityMulaiDiagnosa.class);
++                intent.putExtra("kodePenyakit", kode);
++                (PenyakitAdapter.inflater.getContext()).startActivity(intent);
++            }
++        });
++
++
++        return view;
++    }
++}
++
+Index: app/src/main/java/com/example/diagnosaanak/register.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/register.java	(date 1556545809000)
++++ app/src/main/java/com/example/diagnosaanak/register.java	(date 1556545809000)
+@@ -0,0 +1,187 @@
++package com.example.diagnosaanak;
++
++import android.app.ProgressDialog;
++import android.content.Context;
++import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.Toast;
++
++import com.android.volley.Request;
++import com.android.volley.Response;
++import com.android.volley.VolleyError;
++import com.android.volley.toolbox.StringRequest;
++import com.example.diagnosaanak.AppController;
++
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.util.HashMap;
++import java.util.Map;
++
++public class register extends AppCompatActivity {
++
++    ProgressDialog pDialog;
++    Button btn_register, btn_login;
++    EditText txt_username, txt_password, txt_confirm_password;
++    Intent intent;
++
++    int success;
++    ConnectivityManager conMgr;
++
++    private String url = server.class + "register.php";
++
++    private static final String TAG = register.class.getSimpleName();
++
++    private static final String TAG_SUCCESS = "success";
++    private static final String TAG_MESSAGE = "message";
++
++    String tag_json_obj = "json_obj_req";
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_register);
++
++        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        {
++            if (conMgr.getActiveNetworkInfo() != null
++                    && conMgr.getActiveNetworkInfo().isAvailable()
++                    && conMgr.getActiveNetworkInfo().isConnected()) {
++            } else {
++                Toast.makeText(getApplicationContext(), "No Internet Connection",
++                        Toast.LENGTH_LONG).show();
++            }
++        }
++
++        btn_login = (Button) findViewById(R.id.btn_login);
++        btn_register = (Button) findViewById(R.id.btn_register);
++        txt_username = (EditText) findViewById(R.id.txt_username);
++        txt_password = (EditText) findViewById(R.id.txt_password);
++        txt_confirm_password = (EditText) findViewById(R.id.txt_confirm_password);
++
++        btn_login.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                // TODO Auto-generated method stub
++                intent = new Intent(register.this, login.class);
++                finish();
++                startActivity(intent);
++            }
++        });
++
++        btn_register.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                // TODO Auto-generated method stub
++                String username = txt_username.getText().toString();
++                String password = txt_password.getText().toString();
++                String confirm_password = txt_confirm_password.getText().toString();
++
++                if (conMgr.getActiveNetworkInfo() != null
++                        && conMgr.getActiveNetworkInfo().isAvailable()
++                        && conMgr.getActiveNetworkInfo().isConnected()) {
++                    checkRegister(username, password, confirm_password);
++                } else {
++                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
++                }
++            }
++        });
++
++    }
++
++    private void checkRegister(final String username, final String password, final String confirm_password) {
++        pDialog = new ProgressDialog(this);
++        pDialog.setCancelable(false);
++        pDialog.setMessage("Register ...");
++        showDialog();
++
++        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
++
++            @Override
++            public void onResponse(String response) {
++                Log.e(TAG, "Register Response: " + response.toString());
++                hideDialog();
++
++                try {
++                    JSONObject jObj = new JSONObject(response);
++                    success = jObj.getInt(TAG_SUCCESS);
++
++                    // Check for error node in json
++                    if (success == 1) {
++
++                        Log.e("Successfully Register!", jObj.toString());
++
++                        Toast.makeText(getApplicationContext(),
++                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
++
++                        txt_username.setText("");
++                        txt_password.setText("");
++                        txt_confirm_password.setText("");
++
++                    } else {
++                        Toast.makeText(getApplicationContext(),
++                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
++
++                    }
++                } catch (JSONException e) {
++                    // JSON error
++                    e.printStackTrace();
++                }
++
++            }
++        }, new Response.ErrorListener() {
++
++            @Override
++            public void onErrorResponse(VolleyError error) {
++                Log.e(TAG, "Login Error: " + error.getMessage());
++                Toast.makeText(getApplicationContext(),
++                        error.getMessage(), Toast.LENGTH_LONG).show();
++
++                hideDialog();
++
++            }
++        }) {
++
++            @Override
++            protected Map<String, String> getParams() {
++                // Posting parameters to login url
++                Map<String, String> params = new HashMap<String, String>();
++                params.put("username", username);
++                params.put("password", password);
++                params.put("confirm_password", confirm_password);
++
++                return params;
++            }
++
++        };
++
++        // Adding request to request queue
++        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
++    }
++
++    private void showDialog() {
++        if (!pDialog.isShowing())
++            pDialog.show();
++    }
++
++    private void hideDialog() {
++        if (pDialog.isShowing())
++            pDialog.dismiss();
++    }
++
++    @Override
++    public void onBackPressed() {
++        intent = new Intent(register.this, login.class);
++        finish();
++        startActivity(intent);
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/halamanutama.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/halamanutama.java	(date 1556545809000)
++++ app/src/main/java/com/example/diagnosaanak/halamanutama.java	(date 1556545809000)
+@@ -0,0 +1,34 @@
++package com.example.diagnosaanak;
++
++import android.content.Intent;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.Button;
++
++
++public class halamanutama extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_halamanutama);
++
++        Button btn = (Button) findViewById(R.id.btn_loginadmin);
++                btn.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View view) {
++                        Intent il = new Intent(getApplicationContext(), login.class);
++                        startActivity(il);
++            }
++        });
++        Button btndp = (Button) findViewById(R.id.btn_halamandiagnosa);
++        btndp.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Intent il = new Intent(getApplicationContext(), halamanDiagnosa.class);
++                startActivity(il);
++            }
++        });
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/activitylogin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/activitylogin.java	(date 1556604405000)
++++ app/src/main/java/com/example/diagnosaanak/activitylogin.java	(date 1556604405000)
+@@ -0,0 +1,63 @@
++package com.example.diagnosaanak;
++
++import android.content.Context;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.Button;
++import android.widget.TextView;
++
++public class activitylogin extends AppCompatActivity {
++
++    Button btn_logout;
++    TextView txt_id, txt_username;
++    String id, username;
++    SharedPreferences sharedpreferences;
++
++    public static final String TAG_ID = "id";
++    public static final String TAG_USERNAME = "username";
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_login);
++        setContentView(R.layout.activity_halaman_diagnosa);
++
++        txt_id = (TextView) findViewById(R.id.txt_id);
++        txt_username = (TextView) findViewById(R.id.txt_username);
++        btn_logout = (Button) findViewById(R.id.btn_halamandiagnosa);
++
++        txt_id = (TextView) findViewById(R.id.txt_id);
++        txt_username = (TextView) findViewById(R.id.txt_username);
++        btn_logout = (Button) findViewById(R.id.btn_logout);
++
++        sharedpreferences = getSharedPreferences(login.my_shared_preferences, Context.MODE_PRIVATE);
++
++        id = getIntent().getStringExtra(TAG_ID);
++        username = getIntent().getStringExtra(TAG_USERNAME);
++
++        txt_id.setText("ID : " + id);
++        txt_username.setText("USERNAME : " + username);
++
++        btn_logout.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                // TODO Auto-generated method stub
++                // update login session ke FALSE dan mengosongkan nilai id dan username
++                SharedPreferences.Editor editor = sharedpreferences.edit();
++                editor.putBoolean(login.session_status, false);
++                editor.putString(TAG_ID, null);
++                editor.putString(TAG_USERNAME, null);
++                editor.commit();
++
++                Intent intent = new Intent(activitylogin.this, login.class);
++                finish();
++                startActivity(intent);
++            }
++        });
++
++    }
++}
+\ No newline at end of file
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(date 1553812043000)
++++ app/proguard-rules.pro	(date 1553812043000)
+@@ -0,0 +1,21 @@
++# Add project specific ProGuard rules here.
++# You can control the set of applied configuration files using the
++# proguardFiles setting in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(date 1553812043000)
++++ app/.gitignore	(date 1553812043000)
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/res/layout/activity_list_penyakit.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_list_penyakit.xml	(date 1560418196000)
++++ app/src/main/res/layout/activity_list_penyakit.xml	(date 1560418196000)
+@@ -0,0 +1,2111 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".ListPenyakit">
++
++    <androidx.cardview.widget.CardView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        >
++        <ScrollView
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="vertical">
++
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:layout_margin="10dp"
++                        android:orientation="vertical">
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:onClick="p1"
++                            android:orientation="horizontal">
++                            <TextView
++                                android:layout_width="wrap_content"
++                                android:layout_marginLeft="5dp"
++                                android:layout_height="match_parent"
++                                android:gravity="left"
++                                android:text="1." />
++
++                            <TextView
++                                android:layout_width="280dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_height="match_parent"
++                                android:gravity="left"
++                                android:layout_marginRight="10dp"
++                                android:textAllCaps="true"
++                                android:text="Masalah-masalah tidur pada bayi" />
++                            <LinearLayout
++                                android:layout_width="match_parent"
++                                android:layout_height="wrap_content"
++                                android:gravity="right">
++
++                                <android.support.v7.widget.AppCompatImageView
++                                    android:layout_width="20dp"
++                                    android:layout_height="20dp"
++                                    android:src="@drawable/next" />
++                            </LinearLayout>
++
++                        </LinearLayout>
++
++                        <View
++                            android:layout_width="match_parent"
++                            android:layout_height="0.5dp"
++                            android:layout_gravity="bottom"
++                            android:layout_marginTop="5dp"
++                            android:background="#000"/>
++                    </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p2"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="2." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Menangis Berlebihan" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p3"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="3." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Demam pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p4"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="5." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Diare pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p6"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="6." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Masalah-masalah menyusui" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++<!--asdasdasdasdasdasadasdasdasdasdasdasdsaeasdasdasdasdasdasdasdasdasd-->
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_margin="10dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:onClick="p5"
++                        android:orientation="horizontal">
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:text="4." />
++
++                        <TextView
++                            android:layout_width="280dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_height="match_parent"
++                            android:gravity="left"
++                            android:layout_marginRight="10dp"
++                            android:textAllCaps="true"
++                            android:text="Muntah-muntah pada bayi" />
++                        <LinearLayout
++                            android:layout_width="match_parent"
++                            android:layout_height="wrap_content"
++                            android:gravity="right">
++
++                            <android.support.v7.widget.AppCompatImageView
++                                android:layout_width="20dp"
++                                android:layout_height="20dp"
++                                android:src="@drawable/next" />
++                        </LinearLayout>
++
++                    </LinearLayout>
++
++                    <View
++                        android:layout_width="match_parent"
++                        android:layout_height="0.5dp"
++                        android:layout_gravity="bottom"
++                        android:layout_marginTop="5dp"
++                        android:background="#000"/>
++                </LinearLayout>
++
++
++
++
++
++
++
++
++
++
++
++
++
++            </LinearLayout>
++
++        </ScrollView>
++
++    </androidx.cardview.widget.CardView>
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/ListPenyakit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/ListPenyakit.java	(date 1560416908000)
++++ app/src/main/java/com/example/diagnosaanak/ListPenyakit.java	(date 1560416908000)
+@@ -0,0 +1,186 @@
++package com.example.diagnosaanak;
++
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.Toast;
++
++public class ListPenyakit extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_list_penyakit);
++
++    }
++    public void p1(View v){
++        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
++    }
++    public void p2(View v){
++        Toast.makeText(getApplicationContext(),"tes2",Toast.LENGTH_LONG).show();
++    }
++    public void p3(View v){
++        Toast.makeText(getApplicationContext(),"tes3",Toast.LENGTH_LONG).show();
++    }
++    public void p4(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p5(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p6(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p7(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p8(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p9(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p10(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p11(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p12(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p13(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p14(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p15(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p16(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p17(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p18(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p19(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p20(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p21(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p22(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p23(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p24(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p25(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p26(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p27(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p28(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p29(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p30(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p31(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p32(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p33(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p34(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p35(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p36(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p37(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p38(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p39(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p40(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p41(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p42(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p43(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p44(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p45(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p46(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p47(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p48(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p49(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p50(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p451(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p52(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p53(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p54(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p55(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++    public void p56(View v){
++        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
++    }
++
++
++}
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1553812042000)
++++ app/src/main/res/values/strings.xml	(date 1553812042000)
+@@ -0,0 +1,3 @@
++<resources>
++    <string name="app_name">DiagnosaAnak</string>
++</resources>
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(date 1553812043000)
++++ app/src/main/res/values/colors.xml	(date 1553812043000)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#008577</color>
++    <color name="colorPrimaryDark">#00574B</color>
++    <color name="colorAccent">#D81B60</color>
++</resources>
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(date 1560411744000)
++++ app/src/main/AndroidManifest.xml	(date 1560411744000)
+@@ -0,0 +1,44 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.example.diagnosaanak">
++
++    <uses-permission android:name="android.permission.INTERNET" />
++    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
++
++    <application
++        android:name=".AppController"
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:roundIcon="@mipmap/ic_launcher_round"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme"
++        android:usesCleartextTraffic="true">
++        <activity android:name=".ListPenyakit">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++
++        <uses-library
++            android:name="org.apache.http.legacy"
++            android:required="false" />
++
++        <activity android:name=".ActivityMulaiDiagnosa" />
++        <activity
++            android:name=".halamanutama"
++            android:theme="@style/AppTheme.noActionBar">
++
++        </activity>
++        <activity android:name=".register" />
++        <activity android:name=".login" />
++        <activity
++            android:name=".halamanDiagnosa"
++            android:label="Sistem Pakar Anak" />
++        <activity android:name=".activitylogin" />
++        <activity android:name=".MainActivity" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+Index: app/src/test/java/com/example/diagnosaanak/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/example/diagnosaanak/ExampleUnitTest.java	(date 1553812043000)
++++ app/src/test/java/com/example/diagnosaanak/ExampleUnitTest.java	(date 1553812043000)
+@@ -0,0 +1,17 @@
++package com.example.diagnosaanak;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/list_nama_penyakit.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/list_nama_penyakit.xml	(date 1556546754000)
++++ app/src/main/res/layout/list_nama_penyakit.xml	(date 1556546754000)
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.cardview.widget.CardView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_height="wrap_content"
++    android:layout_width="wrap_content"
++    android:id="@+id/cardClick"
++    android:foreground="?android:attr/selectableItemBackground">
++<LinearLayout
++    android:orientation="horizontal"
++    android:layout_width="match_parent"
++    android:padding="10dp"
++    android:layout_height="match_parent">
++
++    <TextView
++        android:id="@+id/nama_penyakit"
++        android:layout_width="181dp"
++        android:text="nama penyakit"
++        android:layout_height="wrap_content"
++        android:textAllCaps="true"/>
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:id="@+id/kode_penyakit"
++        android:visibility="gone"
++        /> <!--untuk membuat textview tidak tampil-->
++     <!--untuk membuat textview tidak tampil-->
++</LinearLayout>
++</androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: app/src/main/res/xml/network_security_config.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/xml/network_security_config.xml	(date 1557045857000)
++++ app/src/main/res/xml/network_security_config.xml	(date 1557045857000)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<network-security-config>
++    <domain-config cleartextTrafficPermitted="true">
++        <domain includeSubdomains="true">http://192.168.1.70/</domain>
++    </domain-config>
++</network-security-config>
+\ No newline at end of file
+Index: app/src/androidTest/java/com/example/diagnosaanak/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/example/diagnosaanak/ExampleInstrumentedTest.java	(date 1553812042000)
++++ app/src/androidTest/java/com/example/diagnosaanak/ExampleInstrumentedTest.java	(date 1553812042000)
+@@ -0,0 +1,26 @@
++package com.example.diagnosaanak;
++
++import android.content.Context;
++import android.support.test.InstrumentationRegistry;
++import android.support.test.runner.AndroidJUnit4;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import static org.junit.Assert.*;
++
++/**
++ * Instrumented test, which will execute on an Android device.
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++@RunWith(AndroidJUnit4.class)
++public class ExampleInstrumentedTest {
++    @Test
++    public void useAppContext() {
++        // Context of the app under test.
++        Context appContext = InstrumentationRegistry.getTargetContext();
++
++        assertEquals("com.example.diagnosaanak", appContext.getPackageName());
++    }
++}
+Index: app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(date 1553812137000)
++++ app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(date 1553812137000)
+@@ -0,0 +1,34 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:aapt="http://schemas.android.com/aapt"
++    android:width="108dp"
++    android:height="108dp"
++    android:viewportWidth="108"
++    android:viewportHeight="108">
++    <path
++        android:fillType="evenOdd"
++        android:pathData="M32,64C32,64 38.39,52.99 44.13,50.95C51.37,48.37 70.14,49.57 70.14,49.57L108.26,87.69L108,109.01L75.97,107.97L32,64Z"
++        android:strokeWidth="1"
++        android:strokeColor="#00000000">
++        <aapt:attr name="android:fillColor">
++            <gradient
++                android:endX="78.5885"
++                android:endY="90.9159"
++                android:startX="48.7653"
++                android:startY="61.0927"
++                android:type="linear">
++                <item
++                    android:color="#44000000"
++                    android:offset="0.0" />
++                <item
++                    android:color="#00000000"
++                    android:offset="1.0" />
++            </gradient>
++        </aapt:attr>
++    </path>
++    <path
++        android:fillColor="#FFFFFF"
++        android:fillType="nonZero"
++        android:pathData="M66.94,46.02L66.94,46.02C72.44,50.07 76,56.61 76,64L32,64C32,56.61 35.56,50.11 40.98,46.06L36.18,41.19C35.45,40.45 35.45,39.3 36.18,38.56C36.91,37.81 38.05,37.81 38.78,38.56L44.25,44.05C47.18,42.57 50.48,41.71 54,41.71C57.48,41.71 60.78,42.57 63.68,44.05L69.11,38.56C69.84,37.81 70.98,37.81 71.71,38.56C72.44,39.3 72.44,40.45 71.71,41.19L66.94,46.02ZM62.94,56.92C64.08,56.92 65,56.01 65,54.88C65,53.76 64.08,52.85 62.94,52.85C61.8,52.85 60.88,53.76 60.88,54.88C60.88,56.01 61.8,56.92 62.94,56.92ZM45.06,56.92C46.2,56.92 47.13,56.01 47.13,54.88C47.13,53.76 46.2,52.85 45.06,52.85C43.92,52.85 43,53.76 43,54.88C43,56.01 43.92,56.92 45.06,56.92Z"
++        android:strokeWidth="1"
++        android:strokeColor="#00000000" />
++</vector>
+Index: app/src/main/res/layout/activity_activitylogin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_activitylogin.xml	(date 1557817470000)
++++ app/src/main/res/layout/activity_activitylogin.xml	(date 1557817470000)
+@@ -0,0 +1,59 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:padding="16dp"
++    tools:context=".activitylogin"
++   >
++
++<LinearLayout
++android:layout_width="match_parent"
++android:layout_height="wrap_content"
++android:layout_centerHorizontal="true"
++android:layout_centerVertical="true"
++android:orientation="vertical">
++
++<ImageView
++    android:id="@+id/logo"
++    android:layout_width="100dp"
++    android:layout_height="100dp"
++    android:layout_gravity="center"
++    android:src="@drawable/pakaranak"/>
++
++    <View
++    android:id="@+id/View1"
++    android:layout_width="fill_parent"
++    android:layout_height="1dp"
++    android:layout_gravity="center"
++    android:background="#448AFF" />
++
++<TextView
++    android:id="@+id/txt_id"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:text="ID"/>
++
++<TextView
++    android:id="@+id/txt_username"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:text="Username"/>
++
++<Button
++    android:id="@+id/btn_logout"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginTop="50dp"
++    android:background="#00555555"
++    android:text="Logout"
++    android:textStyle="bold" />
++
++</LinearLayout>
++
++    </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_launcher_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/ic_launcher_background.xml	(date 1553812138000)
++++ app/src/main/res/drawable/ic_launcher_background.xml	(date 1553812138000)
+@@ -0,0 +1,170 @@
++<?xml version="1.0" encoding="utf-8"?>
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="108dp"
++    android:height="108dp"
++    android:viewportWidth="108"
++    android:viewportHeight="108">
++    <path
++        android:fillColor="#008577"
++        android:pathData="M0,0h108v108h-108z" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M9,0L9,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,0L19,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M29,0L29,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M39,0L39,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M49,0L49,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M59,0L59,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M69,0L69,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M79,0L79,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M89,0L89,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M99,0L99,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,9L108,9"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,19L108,19"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,29L108,29"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,39L108,39"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,49L108,49"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,59L108,59"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,69L108,69"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,79L108,79"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,89L108,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,99L108,99"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,29L89,29"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,39L89,39"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,49L89,49"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,59L89,59"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,69L89,69"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,79L89,79"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M29,19L29,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M39,19L39,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M49,19L49,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M59,19L59,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M69,19L69,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M79,19L79,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++</vector>
+Index: app/src/main/res/layout/activity_halamanutama.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_halamanutama.xml	(date 1557817528000)
++++ app/src/main/res/layout/activity_halamanutama.xml	(date 1557817528000)
+@@ -0,0 +1,59 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".halamanutama"
++    android:background="@drawable/pakaranak">
++
++    <LinearLayout
++        android:id="@+id/linearLayout"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_centerHorizontal="true"
++        android:layout_centerVertical="true"
++        android:gravity="center"
++        android:orientation="vertical"
++        tools:ignore="MissingConstraints">
++
++        <ImageView
++            android:layout_width="wrap_content"
++            android:layout_height="294dp"
++           />
++
++        <Button
++            android:id="@+id/btn_halamandiagnosa"
++            android:layout_marginBottom="20dp"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_above="@+id/linearLayout"
++            android:layout_gravity="center"
++            android:background="#808080"
++            android:text="Diagnosa Penyakit"
++            android:textColor="#fff"
++            android:textStyle="bold" />
++
++        <Button
++            android:id="@+id/btn_loginadmin"
++            android:layout_width="140dp"
++            android:layout_height="wrap_content"
++            android:layout_alignBottom="@+id/linearLayout"
++            android:background="#808080"
++            android:text="Login Admin"
++            android:textColor="#fff"
++            android:textStyle="bold" />
++
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        android:gravity="center">
++
++    </LinearLayout>
++
++
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_halaman_diagnosa.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_halaman_diagnosa.xml	(date 1553813532000)
++++ app/src/main/res/layout/activity_halaman_diagnosa.xml	(date 1553813532000)
+@@ -0,0 +1,11 @@
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <ListView
++        android:id="@+id/listview_penyakit"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" />
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(date 1553812138000)
++++ app/src/main/res/layout/activity_main.xml	(date 1553812138000)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Hello World!"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(date 1553812138000)
++++ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(date 1553812138000)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(date 1557817470000)
++++ app/src/main/res/layout/activity_login.xml	(date 1557817470000)
+@@ -0,0 +1,70 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout 
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:http="http://schemas.android.com/apk/res-auto"
++    android:layout_height="match_parent"
++    android:padding="16dp" android:layout_width="match_parent">
++
++<LinearLayout
++android:layout_width="match_parent"
++android:layout_height="wrap_content"
++android:layout_centerHorizontal="true"
++android:layout_centerVertical="true"
++android:orientation="vertical">
++
++<ImageView
++    android:layout_width="wrap_content"
++    android:layout_height="294dp"
++    android:src="@drawable/pakaranak"/>
++
++    <View
++    android:id="@+id/View1"
++    android:layout_width="fill_parent"
++    android:layout_height="1dp"
++    android:layout_gravity="center"
++    android:background="#448AFF" />
++
++    <EditText
++    android:id="@+id/txt_username"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:hint="Username"
++    android:inputType="textEmailAddress"
++    android:singleLine="true" />
++
++<EditText
++    android:id="@+id/txt_password"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:hint="Password"
++    android:password="true"
++    android:singleLine="true" />
++
++<Button
++    android:id="@+id/btn_login"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginBottom="15dp"
++    android:text="Login"
++    android:background="#448AFF"
++    android:textColor="#fff"
++    android:textStyle="bold" />
++
++<Button
++    android:id="@+id/btn_register"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginBottom="15dp"
++    android:background="#00555555"
++    android:text="Register"
++    android:textStyle="bold" />
++
++</LinearLayout>
++
++    </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(date 1553820831000)
++++ app/src/main/res/layout/activity_register.xml	(date 1553820831000)
+@@ -0,0 +1,100 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:padding="16dp">
++
++<LinearLayout
++android:layout_width="match_parent"
++android:layout_height="wrap_content"
++android:layout_centerHorizontal="true"
++android:layout_centerVertical="true"
++android:orientation="vertical">
++
++<ImageView
++    android:id="@+id/logo"
++    android:layout_width="100dp"
++    android:layout_height="100dp"
++    android:layout_gravity="center"
++    android:background="@mipmap/ic_launcher" />
++
++<TextView
++    android:id="@+id/TextView1"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginBottom="5dp"
++    android:layout_marginTop="5dp"
++    android:text="www.dedykuncoro.com"
++    android:textSize="18dip"
++    android:textStyle="bold" />
++
++<View
++    android:id="@+id/View1"
++    android:layout_width="fill_parent"
++    android:layout_height="1dp"
++    android:layout_gravity="center"
++    android:background="#448AFF" />
++
++<TextView
++    android:id="@+id/TextView2"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginTop="30dip"
++    android:text="REGISTER BELOW"
++    android:textSize="16dip" />
++
++<EditText
++    android:id="@+id/txt_username"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:hint="Username"
++    android:inputType="textEmailAddress"
++    android:singleLine="true" />
++
++<EditText
++    android:id="@+id/txt_password"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:hint="Password"
++    android:password="true"
++    android:singleLine="true" />
++
++<EditText
++    android:id="@+id/txt_confirm_password"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_margin="10dp"
++    android:hint="Comfirmation Password"
++    android:password="true" />
++
++<Button
++    android:id="@+id/btn_register"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginBottom="15dp"
++    android:background="#448AFF"
++    android:textColor="#fff"
++    android:text="Register"
++    android:textStyle="bold" />
++
++<Button
++    android:id="@+id/btn_login"
++    android:layout_width="wrap_content"
++    android:layout_height="wrap_content"
++    android:layout_gravity="center"
++    android:layout_marginBottom="15dp"
++    android:background="#00555555"
++    android:text="Login"
++    android:textStyle="bold" />
++
++</LinearLayout>
++
++    </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_mulai_diagnosa.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_mulai_diagnosa.xml	(date 1560402077000)
++++ app/src/main/res/layout/activity_mulai_diagnosa.xml	(date 1560402077000)
+@@ -0,0 +1,35 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".ActivityMulaiDiagnosa">
++
++
++    <TextView
++        android:id="@+id/diagnosa"
++        android:layout_width="166dp"
++        android:layout_height="45dp"
++        android:text="Diagnosa" />
++
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="10dp"
++        android:orientation="horizontal">
++
++        <Button
++            android:id="@+id/btn_next"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Tidak" />
++
++        <Button
++            android:id="@+id/btn_ya"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Ya" />
++    </LinearLayout>
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/MainActivity.java	(date 1553996680000)
++++ app/src/main/java/com/example/diagnosaanak/MainActivity.java	(date 1553996680000)
+@@ -0,0 +1,13 @@
++package com.example.diagnosaanak;
++
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++
++public class MainActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++    }
++}
+Index: app/src/main/java/com/example/diagnosaanak/Penyakit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/Penyakit.java	(date 1553817506000)
++++ app/src/main/java/com/example/diagnosaanak/Penyakit.java	(date 1553817506000)
+@@ -0,0 +1,30 @@
++package com.example.diagnosaanak;
++
++public class Penyakit {
++
++    private String kode_penyakit;
++    private String nama_penyakit;
++
++
++    public void setKode_penyakit (String kode_penyakit)
++    {
++        this.kode_penyakit = kode_penyakit;
++    }
++
++    public String getKode_penyakit()
++    {
++        return kode_penyakit;
++    }
++
++    public void setNama_penyakit (String nama_penyakit)
++    {
++        this.nama_penyakit = nama_penyakit;
++    }
++
++    public String getNama_penyakit()
++    {
++        return nama_penyakit;
++    }
++
++
++}
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(date 1553812138000)
++++ app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(date 1553812138000)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/login.java	(date 1560406354000)
++++ app/src/main/java/com/example/diagnosaanak/login.java	(date 1560406354000)
+@@ -0,0 +1,217 @@
++package com.example.diagnosaanak;
++
++import android.app.ProgressDialog;
++import android.content.Context;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.net.ConnectivityManager;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.Toast;
++
++import com.android.volley.Request;
++import com.android.volley.Response;
++import com.android.volley.VolleyError;
++import com.android.volley.toolbox.StringRequest;
++
++
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.util.HashMap;
++import java.util.Map;
++
++
++class login extends AppCompatActivity {
++
++    ProgressDialog pDialog;
++    Button btn_register, btn_login;
++    EditText txt_username, txt_password;
++    Intent intent;
++
++    int success;
++    ConnectivityManager conMgr;
++
++    //private String url = server.class + "login.php";
++
++    private static final String TAG = login.class.getSimpleName();
++
++    private static final String TAG_SUCCESS = "success";
++    private static final String TAG_MESSAGE = "message";
++
++    public final static String TAG_USERNAME = "username";
++    public final static String TAG_ID = "id";
++
++    String tag_json_obj = "json_obj_req";
++
++    SharedPreferences sharedpreferences;
++    Boolean session = false;
++    String id, username;
++    public static final String my_shared_preferences = "my_shared_preferences";
++    public static final String session_status = "session_status";
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_login);
++
++        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        {
++            if (conMgr.getActiveNetworkInfo() != null
++                    && conMgr.getActiveNetworkInfo().isAvailable()
++                    && conMgr.getActiveNetworkInfo().isConnected()) {
++            } else {
++                Toast.makeText(getApplicationContext(), "No Internet Connection",
++                        Toast.LENGTH_LONG).show();
++            }
++        }
++
++        btn_login = (Button) findViewById(R.id.btn_login);
++        btn_register = (Button) findViewById(R.id.btn_register);
++        txt_username = (EditText) findViewById(R.id.txt_username);
++        txt_password = (EditText) findViewById(R.id.txt_password);
++
++        // Cek session login jika TRUE maka langsung buka MainActivity
++        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
++        session = sharedpreferences.getBoolean(session_status, false);
++        id = sharedpreferences.getString(TAG_ID, null);
++        username = sharedpreferences.getString(TAG_USERNAME, null);
++
++//        if (session) {
++//            Intent intent = new Intent(login.this, activitylogin.class);
++//            intent.putExtra(TAG_ID, id);
++//            intent.putExtra(TAG_USERNAME, username);
++//            finish();
++//            startActivity(intent);
++//        }
++
++
++        btn_login.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                // TODO Auto-generated method stub
++                String username = txt_username.getText().toString();
++                String password = txt_password.getText().toString();
++
++                // mengecek kolom yang kosong
++                if (username.trim().length() > 0 && password.trim().length() > 0) {
++                    if (conMgr.getActiveNetworkInfo() != null
++                            && conMgr.getActiveNetworkInfo().isAvailable()
++                            && conMgr.getActiveNetworkInfo().isConnected()) {
++                        checkLogin(username, password);
++                    } else {
++                        Toast.makeText(getApplicationContext() ,"No Internet Connection", Toast.LENGTH_LONG).show();
++                    }
++                } else {
++                    // Prompt user to enter credentials
++                    Toast.makeText(getApplicationContext() ,"Kolom tidak boleh kosong", Toast.LENGTH_LONG).show();
++                }
++            }
++        });
++
++        btn_register.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                // TODO Auto-generated method stub
++                intent = new Intent(login.this, register.class);
++                finish();
++                startActivity(intent);
++            }
++        });
++
++    }
++
++    private void checkLogin(final String username, final String password) {
++        pDialog = new ProgressDialog(this);
++        pDialog.setCancelable(false);
++        pDialog.setMessage("Logging in ...");
++        showDialog();
++
++        StringRequest strReq = new StringRequest(Request.Method.POST, server.URL+"login.php?username="+username+"&password="+password, new Response.Listener<String>() {
++
++            @Override
++            public void onResponse(String response) {
++                Log.e(TAG, "Login Response: " + response.toString());
++                hideDialog();
++
++                try {
++                    JSONObject jObj = new JSONObject(response);
++                    success = jObj.getInt(TAG_SUCCESS);
++
++                    // Check for error node in json
++                    if (success == 1) {
++                        String username = jObj.getString(TAG_USERNAME);
++                        String id = jObj.getString(TAG_ID);
++
++                        Log.e("Successfully Login!", jObj.toString());
++
++                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
++
++                        // menyimpan login ke session
++                        SharedPreferences.Editor editor = sharedpreferences.edit();
++                        editor.putBoolean(session_status, true);
++                        editor.putString(TAG_ID, id);
++                        editor.putString(TAG_USERNAME, username);
++                        editor.commit();
++
++                        // Memanggil main activity
++                        Intent intent = new Intent(login.this, halamanDiagnosa.class);
++
++                        finish();
++                        startActivity(intent);
++                    } else {
++                        Toast.makeText(getApplicationContext(),
++                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
++
++                    }
++                } catch (JSONException e) {
++                    // JSON error
++                    e.printStackTrace();
++                }
++
++            }
++        }, new Response.ErrorListener() {
++
++            @Override
++            public void onErrorResponse(VolleyError error) {
++                Log.e(TAG, "Login Error: " + error.getMessage());
++                Toast.makeText(getApplicationContext(),
++                        error.getMessage(), Toast.LENGTH_LONG).show();
++
++                hideDialog();
++
++            }
++        }) {
++
++            @Override
++            protected Map<String, String> getParams() {
++                // Posting parameters to login url
++                Map<String, String> params = new HashMap<String, String>();
++                params.put("username", username);
++                params.put("password", password);
++
++                return params;
++            }
++
++        };
++
++        // Adding request to request queue
++        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
++    }
++
++    private void showDialog() {
++        if (!pDialog.isShowing())
++            pDialog.show();
++    }
++
++    private void hideDialog() {
++        if (pDialog.isShowing())
++            pDialog.dismiss();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/LoginActivity.java	(date 1556545981000)
++++ app/src/main/java/com/example/diagnosaanak/LoginActivity.java	(date 1556545981000)
+@@ -0,0 +1,4 @@
++package com.example.diagnosaanak;
++
++public class LoginActivity {
++}
+Index: app/src/main/java/com/example/diagnosaanak/AppController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/AppController.java	(date 1553820274000)
++++ app/src/main/java/com/example/diagnosaanak/AppController.java	(date 1553820274000)
+@@ -0,0 +1,53 @@
++package com.example.diagnosaanak;
++
++import android.app.Application;
++import android.text.TextUtils;
++
++import com.android.volley.Request;
++import com.android.volley.RequestQueue;
++import com.android.volley.toolbox.ImageLoader;
++import com.android.volley.toolbox.Volley;
++
++public class AppController extends Application {
++
++    public static final String TAG = AppController.class.getSimpleName();
++
++    private RequestQueue mRequestQueue;
++
++    private static AppController mInstance;
++
++    @Override
++    public void onCreate() {
++        super.onCreate();
++        mInstance = this;
++    }
++
++    public static synchronized AppController getInstance() {
++        return mInstance;
++    }
++
++    public RequestQueue getRequestQueue() {
++        if (mRequestQueue == null) {
++            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
++        }
++
++        return mRequestQueue;
++    }
++
++    public <T> void addToRequestQueue(Request<T> req, String tag) {
++        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
++        getRequestQueue().add(req);
++    }
++
++    public <T> void addToRequestQueue(Request<T> req) {
++        req.setTag(TAG);
++        getRequestQueue().add(req);
++    }
++
++    public void cancelPendingRequests(Object tag) {
++        if (mRequestQueue != null) {
++            mRequestQueue.cancelAll(tag);
++        }
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/diagnosaanak/JSONParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/JSONParser.java	(date 1553812304000)
++++ app/src/main/java/com/example/diagnosaanak/JSONParser.java	(date 1553812304000)
+@@ -0,0 +1,121 @@
++package com.example.diagnosaanak;
++
++import android.util.Log;
++
++import org.apache.http.HttpEntity;
++import org.apache.http.HttpResponse;
++import org.apache.http.NameValuePair;
++import org.apache.http.client.ClientProtocolException;
++import org.apache.http.client.entity.UrlEncodedFormEntity;
++import org.apache.http.client.methods.HttpGet;
++import org.apache.http.client.methods.HttpPost;
++import org.apache.http.client.utils.URLEncodedUtils;
++import org.apache.http.conn.ConnectTimeoutException;
++import org.apache.http.impl.client.DefaultHttpClient;
++import org.apache.http.params.BasicHttpParams;
++import org.apache.http.params.HttpConnectionParams;
++import org.apache.http.params.HttpParams;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.io.UnsupportedEncodingException;
++import java.net.SocketException;
++import java.util.List;
++
++public class JSONParser {
++    static InputStream is = null;
++    static JSONObject jObj = null;
++    static String json = "";
++
++
++    int timeout=10000; //in milisecond = 10 detik
++
++    // constructor
++    public JSONParser() {
++        //timeout = new Values().gettimeout();
++    }
++
++    // function get json from url
++    // by making HTTP POST or GET mehtod
++    public JSONObject makeHttpRequest(String url, String method,
++                                      List<NameValuePair> params) {
++
++        // Making HTTP request
++        try {
++
++            HttpParams httpParameters = new BasicHttpParams();
++            HttpConnectionParams.setConnectionTimeout(httpParameters, timeout);
++            HttpConnectionParams.setSoTimeout(httpParameters, timeout);
++
++            // check for request method
++            if(method == "POST"){
++                // request method is POST
++                // defaultHttpClient
++                DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
++                HttpPost httpPost = new HttpPost(url);
++                httpPost.setEntity(new UrlEncodedFormEntity(params));
++
++                HttpResponse httpResponse = httpClient.execute(httpPost);
++                HttpEntity httpEntity = httpResponse.getEntity();
++                is = httpEntity.getContent();
++
++            }else if(method == "GET"){
++                // request method is GET
++                DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
++                String paramString = URLEncodedUtils.format(params, "utf-8");
++                url += "?" + paramString;
++                HttpGet httpGet = new HttpGet(url);
++
++                HttpResponse httpResponse = httpClient.execute(httpGet);
++                HttpEntity httpEntity = httpResponse.getEntity();
++                is = httpEntity.getContent();
++            }
++
++        } catch (UnsupportedEncodingException e) {
++            e.printStackTrace();
++        } catch (ClientProtocolException e) {
++            e.printStackTrace();
++        } catch (SocketException ste)
++        {
++            Log.e("Timeout Exception: ", ste.toString());
++        }
++        catch (ConnectTimeoutException e)
++        {
++            Log.e("Timeout Exception: ", e.toString());
++        }
++        catch (IOException e) {
++            e.printStackTrace();
++        }
++
++
++
++        try {
++            BufferedReader reader = new BufferedReader(new InputStreamReader(
++                    is, "iso-8859-1"), 8);
++            StringBuilder sb = new StringBuilder();
++            String line = null;
++            while ((line = reader.readLine()) != null) {
++                sb.append(line + "\n");
++            }
++            is.close();
++            json = sb.toString();
++        } catch (Exception e) {
++            Log.e("Buffer Error", "Error converting result " + e.toString());
++        }
++
++        // try parse the string to a JSON object
++        try {
++            jObj = new JSONObject(json);
++        } catch (JSONException e) {
++            Log.e("JSON Parser", "Error parsing data " + e.toString());
++        }
++
++        // return JSON String
++        return jObj;
++
++    }
++}
+Index: app/src/main/java/com/example/diagnosaanak/server.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/server.java	(date 1560404322000)
++++ app/src/main/java/com/example/diagnosaanak/server.java	(date 1560404322000)
+@@ -0,0 +1,7 @@
++package com.example.diagnosaanak;
++
++public class server  {
++    public static final String URL = "https://theofist02.000webhostapp.com/projectTA/";
++}
++
++
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(date 1560411971000)
++++ app/build.gradle	(date 1560411971000)
+@@ -0,0 +1,36 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 28
++    useLibrary 'org.apache.http.legacy'
++    defaultConfig {
++        applicationId "com.example.diagnosaanak"
++        minSdkVersion 15
++        targetSdkVersion 28
++        versionCode 1
++        versionName "1.0"
++        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
++        }
++    }
++    packagingOptions {
++        exclude 'META-INF/proguard/androidx-annotations.pro'
++    }
++}
++
++dependencies {
++    implementation fileTree(dir: 'libs', include: ['*.jar'])
++    //noinspection GradleCompatible
++    implementation 'com.android.support:appcompat-v7:28.0.0'
++    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
++    implementation 'com.android.volley:volley:1.1.0'
++
++    testImplementation 'junit:junit:4.12'
++    androidTestImplementation 'com.android.support.test:runner:1.0.2'
++    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
++    implementation 'androidx.cardview:cardview:1.0.0'
++}
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(date 1557824242000)
++++ app/src/main/res/values/styles.xml	(date 1557824242000)
+@@ -0,0 +1,17 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++    </style>
++
++    <style name="AppTheme.noActionBar" >
++        <!-- Customize your theme here. -->
++        <item name="windowNoTitle">true</item>
++        <item name="windowActionBar">false</item>
++    </style>
++
++</resources>
+Index: app/src/main/java/com/example/diagnosaanak/halamanDiagnosa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/halamanDiagnosa.java	(date 1557245571000)
++++ app/src/main/java/com/example/diagnosaanak/halamanDiagnosa.java	(date 1557245571000)
+@@ -0,0 +1,129 @@
++package com.example.diagnosaanak;
++
++
++import android.app.ProgressDialog;
++import android.content.Intent;
++import android.os.AsyncTask;
++import android.os.Bundle;
++import android.support.v7.app.AppCompatActivity;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ListView;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import org.apache.http.NameValuePair;
++import org.json.JSONArray;
++import org.json.JSONObject;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class halamanDiagnosa extends AppCompatActivity {
++    ListView list;
++
++    JSONParser jParser = new JSONParser();
++    ArrayList<Penyakit> daftar_penyakit = new ArrayList<Penyakit>();
++    JSONArray daftarPenyakit = null;
++    String url_read_penyakit = server.URL+"read_penyakit.php";
++    // JSON Node names, ini harus sesuai yang di API
++    public static final String TAG_SUCCESS = "success";
++    public static final String TAG_PENYAKIT = "penyakit";
++    public static final String TAG_KODE_PENYAKIT = "kode_penyakit";
++    public static final String TAG_NAMA_PENYAKIT = "nama_penyakit";
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_halaman_diagnosa);
++
++        list = (ListView) findViewById(R.id.listview_penyakit);
++
++        //jalankan ReadMhsTask
++        ReadPenyakitTask m = (ReadPenyakitTask) new ReadPenyakitTask().execute();
++
++
++    }
++
++
++    class ReadPenyakitTask extends AsyncTask<String, Void, String>
++    {
++        ProgressDialog pDialog;
++
++        @Override
++        protected void onPreExecute() {
++            super.onPreExecute();
++            pDialog = new ProgressDialog(halamanDiagnosa.this);
++            pDialog.setMessage("Mohon Tunggu..");
++            pDialog.setIndeterminate(true);
++            pDialog.setCancelable(true);
++            pDialog.show();
++        }
++
++        @Override
++        protected String doInBackground(String... sText) {
++            String returnResult = getListPenyakit(); //memanggil method getMhsList()
++            return returnResult;
++
++        }
++
++        @Override
++        protected void onPostExecute(String result) {
++            super.onPostExecute(result);
++            pDialog.dismiss();
++            if(result.equalsIgnoreCase("Exception Caught"))
++            {
++                Toast.makeText(halamanDiagnosa.this, "Unable to connect to server,please check your internet connection!", Toast.LENGTH_LONG).show();
++            }
++
++            if(result.equalsIgnoreCase("no results"))
++            {
++                Toast.makeText(halamanDiagnosa.this, "Data empty", Toast.LENGTH_LONG).show();
++            }
++            else
++            {
++                list.setAdapter(new PenyakitAdapter(halamanDiagnosa.this,daftar_penyakit)); //Adapter menampilkan data mahasiswa ke dalam listView
++            }
++        }
++
++
++        //method untuk memperoleh daftar mahasiswa dari JSON
++        public String getListPenyakit()
++        {
++            Penyakit tempPenyakit = new Penyakit();
++            List<NameValuePair> parameter = new ArrayList<NameValuePair>();
++            try {
++                JSONObject json = jParser.makeHttpRequest(url_read_penyakit,"POST", parameter);
++
++                int success = json.getInt(TAG_SUCCESS);
++                if (success == 1) { //Ada record Data (SUCCESS = 1)
++                    //Getting Array of daftar_mhs
++                    daftarPenyakit = json.getJSONArray(TAG_PENYAKIT);
++                    // looping through All daftar_mhs
++                    for (int i = 0; i < daftarPenyakit.length() ; i++){
++                        JSONObject c = daftarPenyakit.getJSONObject(i);
++                        tempPenyakit = new Penyakit();
++                        tempPenyakit.setKode_penyakit(c.getString(TAG_KODE_PENYAKIT));
++                        tempPenyakit.setNama_penyakit(c.getString(TAG_NAMA_PENYAKIT));
++
++                        daftar_penyakit.add(tempPenyakit);
++                    }
++                    return "OK";
++                }
++                else {
++                    //Tidak Ada Record Data (SUCCESS = 0)
++                    return "no results";
++                }
++
++            } catch (Exception e) {
++                e.printStackTrace();
++                return "Exception Caught";
++            }
++        }
++
++    }
++}
++
+Index: app/src/main/java/com/example/diagnosaanak/ActivityMulaiDiagnosa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/diagnosaanak/ActivityMulaiDiagnosa.java	(date 1560406086000)
++++ app/src/main/java/com/example/diagnosaanak/ActivityMulaiDiagnosa.java	(date 1560406086000)
+@@ -0,0 +1,251 @@
++package com.example.diagnosaanak;
++
++import android.app.ProgressDialog;
++import android.os.AsyncTask;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
++import android.widget.Button;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import com.android.volley.Request;
++import com.android.volley.Response;
++import com.android.volley.VolleyError;
++import com.android.volley.toolbox.StringRequest;
++
++import org.apache.http.NameValuePair;
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++import org.w3c.dom.Text;
++
++import java.util.ArrayList;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++
++
++public class ActivityMulaiDiagnosa extends AppCompatActivity {
++    String kodePenyakit;
++    String namaRow;
++    int success, noD,noDL;
++    TextView diagnosa;
++    int triggerD,triggerDLL,triggetDL_T;
++    private Button btn_tidak, btn_ya;
++    JSONParser jParser = new JSONParser();
++    JSONArray daftarPenyakit = null;
++    private ProgressDialog pDialog;
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_mulai_diagnosa);
++        diagnosa = (TextView)findViewById(R.id.diagnosa);
++        kodePenyakit = getIntent().getStringExtra("kodePenyakit");
++        triggerDLL = 0;
++        new ReadPenyakitTaskTidak().execute();
++        Toast.makeText(getApplicationContext(),kodePenyakit,Toast.LENGTH_LONG).show();
++        btn_ya = (Button)findViewById(R.id.btn_ya);
++        btn_ya.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++
++                new ReadPenyakitTaskYa().execute();
++
++            }
++        });
++
++        btn_tidak = (Button)findViewById(R.id.btn_next);
++        btn_tidak.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++
++                new ReadPenyakitTaskTidak().execute();
++
++            }
++        });
++
++
++    }
++    //----------------------------YA
++    class ReadPenyakitTaskYa extends AsyncTask<String, Void, String>
++    {
++        @Override
++        protected void onPreExecute() {
++            super.onPreExecute();
++            pDialog = new ProgressDialog(ActivityMulaiDiagnosa.this);
++            pDialog.setMessage("Mohon Tunggu..");
++            pDialog.setIndeterminate(true);
++            pDialog.setCancelable(true);
++            pDialog.show();
++        }
++
++        @Override
++        protected String doInBackground(String... sText) {
++            String returnResult = getListPenyakit();
++            return returnResult;
++
++        }
++
++        @Override
++        protected void onPostExecute(String result) {
++            super.onPostExecute(result);
++            pDialog.dismiss();
++            if(result.equalsIgnoreCase("Exception Caught"))
++            {
++                Toast.makeText(ActivityMulaiDiagnosa.this, "Unable to connect to server,please check your internet connection!", Toast.LENGTH_LONG).show();
++            }
++
++            if(result.equalsIgnoreCase("no results"))
++            {
++                Toast.makeText(ActivityMulaiDiagnosa.this, "Data empty", Toast.LENGTH_LONG).show();
++            }
++            if(result.equalsIgnoreCase("null"))
++            {
++                btn_tidak.setVisibility(View.GONE);
++                btn_ya.setVisibility(View.GONE);
++            }
++
++        }
++
++
++        public String getListPenyakit()
++        {
++            if(triggerDLL == 0){
++                namaRow = "diagLanjut_";
++                noDL=noDL+1;
++            }
++
++            List<NameValuePair> parameter = new ArrayList<NameValuePair>();
++            try {
++                JSONObject json = jParser.makeHttpRequest(server.URL+"dataDiagnosaLanjut.php?kodePenyakit="+kodePenyakit+"&namaRow="+namaRow+noD,"POST", parameter);
++                int success = json.getInt("success");
++                if(success == 1){
++                    //Tidak Ada Record Data (SUCCESS = 0)
++                    daftarPenyakit = json.getJSONArray("penyakit");
++                    diagnosa.setText("Segera Periksa ke dokter");
++                    //Toast.makeText(getApplicationContext(),"Kosong",Toast.LENGTH_LONG).show();
++
++                    return "null";
++                }else if (success == 2) { //Ada record Data (SUCCESS = 1)
++                    //Getting Array of daftar_mhs
++                    daftarPenyakit = json.getJSONArray("penyakit");
++                    // looping through All daftar_mhs
++                    for (int i = 0; i < daftarPenyakit.length() ; i++){
++                        JSONObject c = daftarPenyakit.getJSONObject(i);
++                        String isiDiagnosa =c.getString("isiDiagnosa");
++                        diagnosa.setText(isiDiagnosa);
++                    }
++
++                    return "OK";
++                }
++
++                else {
++                    //Tidak Ada Record Data (SUCCESS = 0)
++                    Toast.makeText(getApplicationContext(),"Kosong2",Toast.LENGTH_LONG).show();
++                    return "no results";
++                }
++
++
++            } catch (Exception e) {
++                e.printStackTrace();
++                return "Exception Caught";
++            }
++
++        }
++
++    }
++
++    //----------------------------TIDAK
++
++    class ReadPenyakitTaskTidak extends AsyncTask<String, Void, String>
++    {
++        @Override
++        protected void onPreExecute() {
++            super.onPreExecute();
++            pDialog = new ProgressDialog(ActivityMulaiDiagnosa.this);
++            pDialog.setMessage("Mohon Tunggu..");
++            pDialog.setIndeterminate(true);
++            pDialog.setCancelable(true);
++            pDialog.show();
++        }
++
++        @Override
++        protected String doInBackground(String... sText) {
++            String returnResult = getListPenyakit(); //memanggil method getMhsList()
++            return returnResult;
++
++        }
++
++        @Override
++        protected void onPostExecute(String result) {
++            super.onPostExecute(result);
++            pDialog.dismiss();
++            if(result.equalsIgnoreCase("Exception Caught"))
++            {
++                Toast.makeText(ActivityMulaiDiagnosa.this, "Unable to connect to server,please check your internet connection!", Toast.LENGTH_LONG).show();
++            }
++
++            if(result.equalsIgnoreCase("no results"))
++            {
++                Toast.makeText(ActivityMulaiDiagnosa.this, "Data empty", Toast.LENGTH_LONG).show();
++            }
++            if(result.equalsIgnoreCase("null"))
++            {
++                btn_tidak.setVisibility(View.GONE);
++                btn_ya.setVisibility(View.GONE);
++            }
++
++        }
++
++
++        public String getListPenyakit()
++        {
++            if(triggerD == 0){
++                namaRow = "diagnosa_";
++                noD=noD+1;
++            }
++
++            List<NameValuePair> parameter = new ArrayList<NameValuePair>();
++            try {
++                JSONObject json = jParser.makeHttpRequest(server.URL+"dataDiagnosa.php?kodePenyakit="+kodePenyakit+"&namaRow="+namaRow+noD,"POST", parameter);
++                int success = json.getInt("success");
++                if(success == 1){
++                    //Tidak Ada Record Data (SUCCESS = 0)
++                    daftarPenyakit = json.getJSONArray("penyakit");
++                    diagnosa.setText("Segera Periksa ke dokter");
++                    //Toast.makeText(getApplicationContext(),"Kosong",Toast.LENGTH_LONG).show();
++
++                    return "null";
++                }else if (success == 2) { //Ada record Data (SUCCESS = 1)
++                    //Getting Array of daftar_mhs
++                    daftarPenyakit = json.getJSONArray("penyakit");
++                    // looping through All daftar_mhs
++                    for (int i = 0; i < daftarPenyakit.length() ; i++){
++                        JSONObject c = daftarPenyakit.getJSONObject(i);
++                        String isiDiagnosa =c.getString("isiDiagnosa");
++                                diagnosa.setText(isiDiagnosa);
++                    }
++
++                    return "OK";
++                }
++
++                else {
++                    //Tidak Ada Record Data (SUCCESS = 0)
++                    Toast.makeText(getApplicationContext(),"Kosong2",Toast.LENGTH_LONG).show();
++                    return "no results";
++                }
++
++
++            } catch (Exception e) {
++                e.printStackTrace();
++                return "Exception Caught";
++            }
++
++        }
++
++    }
++
++
++}
