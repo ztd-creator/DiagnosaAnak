@@ -1,4 +1,4 @@
-package file.example.diagnosaanak.penyakit;
+package file.project.diagnosaanak.penyakit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,11 +6,8 @@ import android.text.Html;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.cardview.widget.CardView;
 
 import com.example.diagnosaanak.R;
 

@@ -1,4 +1,4 @@
-package file.example.diagnosaanak;
+package file.project.diagnosaanak;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

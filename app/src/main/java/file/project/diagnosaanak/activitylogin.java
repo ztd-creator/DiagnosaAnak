@@ -1,4 +1,4 @@
-package file.example.diagnosaanak;
+package file.project.diagnosaanak;
 
 import android.content.Context;
 import android.content.Intent;

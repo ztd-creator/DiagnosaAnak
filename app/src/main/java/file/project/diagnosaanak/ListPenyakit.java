@@ -1,4 +1,4 @@
-package file.example.diagnosaanak;
+package file.project.diagnosaanak;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.example.diagnosaanak.R;
 
-import file.example.diagnosaanak.penyakit.p1;
+import file.project.diagnosaanak.penyakit.p1;
 
 public class ListPenyakit extends AppCompatActivity {
 
