@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".AppController"
+        android:name="file.example.diagnosaanak.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".penyakit.p1"
+        <activity android:name="file.example.diagnosaanak.penyakit.p1"
             android:theme="@style/AppTheme.noActionBar"></activity>
-        <activity android:name=".ListPenyakit"
+        <activity android:name="file.example.diagnosaanak.ListPenyakit"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,17 +29,17 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".ActivityMulaiDiagnosa" />
+        <activity android:name="file.example.diagnosaanak.ActivityMulaiDiagnosa" />
         <activity
-            android:name=".halamanutama"
+            android:name="file.example.diagnosaanak.halamanutama"
             android:theme="@style/AppTheme.noActionBar" />
-        <activity android:name=".register" />
-        <activity android:name=".login" />
+        <activity android:name="file.example.diagnosaanak.register" />
+        <activity android:name="file.example.diagnosaanak.login" />
         <activity
-            android:name=".halamanDiagnosa"
+            android:name="file.example.diagnosaanak.halamanDiagnosa"
             android:label="Sistem Pakar Anak" />
-        <activity android:name=".activitylogin" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="file.example.diagnosaanak.activitylogin" />
+        <activity android:name="file.example.diagnosaanak.MainActivity" />
     </application>
 
 </manifest>
