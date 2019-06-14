@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".penyakit.p1"></activity>
-        <activity android:name=".ListPenyakit">
+        <activity android:name=".penyakit.p1"
+            android:theme="@style/AppTheme.noActionBar"></activity>
+        <activity android:name=".ListPenyakit"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
