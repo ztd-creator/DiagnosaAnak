@@ -3,6 +3,8 @@ package file.project.diagnosaanak;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.diagnosaanak.R;
+
 public class tesji extends AppCompatActivity {
 
     @Override
