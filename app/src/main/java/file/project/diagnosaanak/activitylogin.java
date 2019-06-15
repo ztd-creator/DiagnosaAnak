@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.diagnosaanak.R;
 
 public class activitylogin extends AppCompatActivity {
-//tes
+
     Button btn_logout;
     TextView txt_id, txt_username;
     String id, username;
