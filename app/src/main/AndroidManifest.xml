@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="file.project.diagnosaanak.tesji"></activity>
         <activity
             android:name="file.project.diagnosaanak.penyakit.p1"
             android:theme="@style/AppTheme.noActionBar" />
