@@ -13,7 +13,7 @@ import com.example.diagnosaanak.R;
 
 public class activitylogin extends AppCompatActivity {
 
-    Button btn_logout,okokok;
+    Button btn_logout,okokok,cekcek;
     TextView txt_id, txt_username;
     String id, username;
     SharedPreferences sharedpreferences;
