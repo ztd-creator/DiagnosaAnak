@@ -8,9 +8,9 @@
     <application
         android:name="file.project.diagnosaanak.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/logoaplikasi"
+        android:icon="@mipmap/logofix"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logoaplikasi_round"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
