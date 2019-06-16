@@ -27,7 +27,7 @@ public class P3 extends AppCompatActivity {
         animShow = AnimationUtils.loadAnimation( this, R.anim.show);
         animHide = AnimationUtils.loadAnimation( this, R.anim.hide);
 
-        final TextView p1 = findViewById(R.id.diagnosaMulai);
+        final TextView p3 = findViewById(R.id.diagnosaMulai);
         ya = findViewById(R.id.btn_yaa);
         tdk = findViewById(R.id.btn_tidakk);
         mulai = findViewById(R.id.btn_mulai);
@@ -39,7 +39,7 @@ public class P3 extends AppCompatActivity {
                 mulai.setVisibility(View.GONE);
                 findViewById(R.id.cardviewDiagnosa).setVisibility(View.VISIBLE);
 
-                p1.setText("Apakah Usia Si bayi kurang dari 4 bulan?");
+                p3.setText("Apakah usia bayi anda kurang dari 6 bulan?");
             }
         });
         //tombol YA
@@ -47,121 +47,97 @@ public class P3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null){
-                    p1.setText("apakah ia menangis berkepanjangan di sore hari dan anda sulit menenangkannya agar mau tidur?");
-                    posisi="dl1";
-                } else
-                if(posisi.equals("dl1")){
-                    p1.setText("hasil");
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "BAWA KE DOKTER SEKARANG JUGA" +
+                            "Kemungkinan Penyebab Mungkin bayi anda terserang infeksi virus atau bakteri. Selain itu, demam bisa timbul setelah menjalani imunisasi." + "<b>" + "tindakan "+ "</b>"+ "Tindakan Sebelum memeriksnya ke dokter, redahkanlah demamnya. Dokter akan memeriksa si bayi untuk mencari penyebabnya. Pada beberapa kasus, dokter akan meresepkan antibiotika. Mungkin dokter akan menyarankan rawat inap dirumahsakit bila si bayi tampak sangat tidak sehat atau bila penyebabnya tidak jelas";
+                    p3 .setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                } else if(posisi.equals("rev")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + " rasa lapar mungkin penyebab bangunnya si bayi. kebutuhan sering makan adalah wajar pada bayi di usia ini"+ "<b>" +
-                            "tindakan "+ "</b>"+"usaha mencegah bayi terbangun karena lapar di malam hari, misalnya dengan memberinya minum tambahan di sore hari, biasanya kurang berhasil. jangan pernah menambah formula susu bayi. beristirahatlah di siang hari ketika si bayi sedang tidur. bila dia bayi ASI , cobalah perah dan wadahi dalam botol agar pasangan anda bisa sesekali membantu meminumkannya di mal" ;
-                    p1.setText(Html.fromHtml(sourceString));
+                else if(posisi.equals("d2")){
+                   //Masih ada Pembaharuan ----------------------------------------------------------------------------------
+
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                }else
-                if(posisi.equals("d2")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "sebagian bayi memang tidur lebih sedikit dari yang lain. buatlah si bayi tetap senang di saat bangun dengan memberinya banyak benda untuk dilihat dan mainan. ikuti juga saran tindakan untuk menidurkan bayi ";
-                    p1.setText(Html.fromHtml(sourceString));
+                else if(posisi.equals("d3")){
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "BAWA KE DOKTER DALAM 24 JAM" +
+                            "Kemungkinan Penyebab Suatu infeksi virus atau bakteri di telinga bagian tengah adalah penyebab umun naiknya temperatur seorang bayi usia diatas 6 bulan. Infeksi telinga bagian tengah semakin mungkin bila ia baru saja sakit pilek." + "<b>" +
+                            "tindakan "+ "</b>"+ "Tindakan Doktwr akan memeriksanya dan meresepkan antibiotika. Selain itu, lakukan sendiri tindakan meredakan nyeri telinga dan meredakan demam.";
+                    p3.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                }else
-                if(posisi.equals("dl2")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "kemungkinan penyebab. rasa lapar mungkin penyebab bangunnya si bayi. kebutuhan sering makan adalah wajar pada bayi di usia ini.\n" +
-                            "\n" + "<b>" +
-                            "tindakan "+ "</b>"+"usaha mencegah bayi terbangun karena lapar di malam hari, misalnya dengan memberinya minum tambahan di sore hari, biasanya kurang berhasil. jangan pernah menambah formula susu bayi. " +
-                            "beristirahatlah di siang hari ketika si bayi sedang tidur. bila dia bayi ASI , " +
-                            "cobalah perah dan wadahi dalam botol agar pasangan anda bisa sesekali membantu meminumkannya di mal" ;
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
 
-                }else
-                if(posisi.equals("d3")){
-                    p1.setText("apakah si bayi selalu mengikuti pola itu?");
-                    posisi="dl3";
-                }else
-                if(posisi.equals("dl3")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + " bayi muda bisa tidur setiap saat. setelah berusia 2-3 bulan ia bisa mulai di dorong untuk lebih banyak tidur di malam hari dengan memberikan perbedaan nyata antara siang dan malam hari, dengan membiarkan tirai tetap terbuka di siang hari dan meredupkan cahaya di kamarnya pada malam hari. ketika mengganti popok di malam hari, gunakan lamou temaram, dan jangan mengajaknya bicara dan bermain. ";
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-
-                }else
-                if(posisi.equals("dl4")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + " setelah semakin membesar, bayi anda akan membutuhkan tidur lebih sedikit. cobalah mengurangi tidur siangnya agar ia bisa tidur lebih nyenyak di malam hari ";
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-
-                }
                 else if(posisi.equals("d4")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + " berbagi kamar dengan bayi memang bisa mengganggu suasana malam anda dan si bayi. " +
-                            "penyebabnya bisa karena anda telah membuat suara yang mengganggu tidurnya. " +
-                            "namun lebih besar lagi kemungkinan anda yang terlalu peka terhadap gerakan si bayi " +
-                            "di saat tidur dan sedikit suara si bayi sudah anda duga sebagai tanda terbangun penuh. " +
-                            "banyak bayi yang tidur lasak dan bila tidak di ganggu, akan terus tidur kembali\n" +
-                            "\n" + "<b>" +
-                            "tindakan "+ "</b>"+ "bila memungkinkan, pindahkan si bayi ke kamar lain. anda tentu akan tetap mendengar bila ia menangis, namun mungkin anda kurang suka terbangunkan secara mendadak ";
-                    p1.setText(Html.fromHtml(sourceString));
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "BAWA KE DOKTER SEKRANG JUGA" +
+                            "Kemungkinan Penyebab Bronkhiolitis (Inveksi virus disaluran nafas paru-paru ) atau pneumonia  (inveksi virus atau bakteri ada gelumbung udara di paru-paru)\n" + "<b>" +
+                            "tindakan "+ "</b>"+ "Tindakan Dokter atau memeriksa dan mungkin merujuk si bayi kerumah sakit untuk menjalani beberapa tes, misalnya sinar-X dan pengukuran tingkat oksigen darah. Pengobatan bisa mencakup antibiotika";
+                    p3.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                }
                 else if(posisi.equals("d5")){
-                    p1.setText("Apakah ia tampak kurang sehat?");
-                    posisi="dl5";
-                }else if(posisi.equals("dl5")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + " bila terlihat gejala spesifik, misalnya demam, diare, atau muntah periksalah ke dokter";
-                    p1.setText(Html.fromHtml(sourceString));
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB Demamnya mungkin karena inveksi virus, misalnya pilek.  Campak adalah kemungkinan yang agak tipis. Bila akibat campak, akan timbul ruam merah rata melebar dalam 2-3 hari." + "<b>" +
+                            "tindakan "+ "</b>"+ "TINDAKAN Redaknlah demamnya . Sangat perlu juga mendorong si bayi agar banyak minum, namun jangan terlalu mencemaskan makanan padat. Bila timbul ruam atau bila kondisinya tidak membaik dalam 24 jam, perikslah ke dokter.";
+                    p3.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-                }else if(posisi.equals("dl6")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + " dengan semakin tumbuhnya bayi anda, ia akan memerlukan lebih banyak makanan. memperbanyak makan di siang hari akan membuat si bayi tak lagi bangun di malam hari pilihan lain mintalah saran dari dokter atau mantri kesehatan";
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-                }else if(posisi.equals("dl7")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + " kedinginan atau kegerahan bisa membangunkan bayi di malam hari." + "<b>" +
-                            "tindakan "+ "</b>"+ "jagalah temperatur kamar si bayi sekitar 18°C. bayi anda tidak memerlukan selimut lebih dari kebutuhan anda sendiri pada keadaan sama. membiarkan bayi kegerahan bisa meningkatkan resiko sindroma kematian bayi mendadak (kiri). bila ia kedinginan karena selimutnya tertendang,cobalah memakaikan pakaian tidur di malam hari.";
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                }else if(posisi.equals("dl8")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + " bayi bisa merasakan kecemasan atau ketegangan orang tuanya, dan bisa terganggu oleh hal itu." + "<b>" +
-                            "tindakan "+ "</b>"+ "mungkin perlu sedikit waktu agar bayi anda yakin kembali. kalau bisa, jagalah jadwal harian si bayi tetap stabil, walau kehidupan anda sedang kacau. ketika si bayi terbangun di malam hari, berilah minum dan belaian, namun pastikan bahwa si bayi tahu bahwa ia harus kembali ke tempat tidurnya sendiri, agar si bayi tidak terbiasa bangun di malam hari dan berharap di ajak bermain";
-                    p1.setText(Html.fromHtml(sourceString));
+                else if(posisi.equals("d6")){
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bahaya! bawa ke rumah sakit sekarang juga" +
+
+                            "KEMUNGKINAN PENYEBAB." +
+                            "Meningitis, peradangan selaput pembungkus otak akibat infeksi, bisa menyebabkan gejala seperti ini. " + "<b>" +
+                            "tindakan "+ "</b>"+  "TINDAKAN. \n" +
+                            "Bila diduga meningitis, si bayi harus segera dibawa ke rumah sakit saat itu juga, untuk mendapatkan pertolongan segera dengan antibiotika,  dan mungkin memerlukan perawatan intensif. ";
+                    p3.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-                }
+                    tdk.setVisibility(View.GONE);}
 
+                else if(posisi.equals("d7")){
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB. " +
+                            "Gastroenteritis, yaitu infeksi sistem pencernaan, adalah kemungkinan terbesar gejala seperti ini, terutama bila si bayi juga muntah. " + "<b>" +
+                            "tindakan "+ "</b>"+ "TINDAKAN. \n" +
+                            "Dokter akan memeriksa apakah si bayi mengalami dehidrasi.  Dokter juga akan memberikan beberapa saran pencegahan dehidrasi pada bayi dan langkah-langkah menangani gastroenteritis pada bayi.";
+                    p3.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
+                else if(posisi.equals("d8")){
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB. " +
+                            "Sebagian bayi bisa merasa tidak nyaman atau demam ringan dalam seminggu setelah diimunisasi rutin. " + "<b>" +
+                            "tindakan "+ "</b>"+  "TINDAKAN. " +
+                            "Ikuti saran-saran menghadapi demam setelah imunisasi";
+                    p3.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
+                else if(posisi.equals("d9")){
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB. " +
+                            "Kegerahan, kerena pakaian yang terlalu tebal atau udara sekitar yang terlalu panas, nisa menyebabkan demam. " + "<b>" +
+                            "tindakan "+ "</b>"+  "TINDAKAN." +
+                            "Bayi tidak membutuhkan pakaian yang lebih tebal daripada orang dewasa pada suatu kondisi yang sama,  dan akan nyaman pada temperatur ruang 15-20 °C.  Tempat tidur bayi tidak boleh terletak di dekat alat pemanas ruangan. Lepaskan semua pakaian yang berlebihan dan pindahkan si bayi ke tempat yang lebih sejuk dan tidak dingin. Bila temperatur bayi tidak ";
+                    p3.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
             }
@@ -171,65 +147,63 @@ public class P3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(posisi==null||posisi.equals("rev")){
-                    p1.setText("Apakah bayi anda tidur lebih sedikit dari bayi lain seusianya?");
+                if(posisi==null||posisi.equals("d1")){
+                    p3.setText("adakah ruam di kulitnya?");
                     posisi="d2";
                 }
 
-
-
-                else
-                if(posisi.equals("dl1")){
-                    p1.setText("Apakah ia sering bangun di malam hari namum kembali tidur setelah disusui?");
-                    posisi="rev";
-                } else
-                if(posisi.equals("d2")){
-                    p1.setText("Apakah si bayi banyak tidur di siang hari dan sedikit di malam hari?");
-                    posisi="d3";
-                }else
-
-                if(posisi.equals("dl3")){
-                    p1.setText("Apakah si bayi terbiasa tidur siang?");
-                    posisi="dl4";
-                }else
-                if(posisi.equals("d3")||posisi.equals("dl4")){
-                    p1.setText("Apakah si bayi tidur sekamar dengan anda?");
-                    posisi="d4";
-                }else if(posisi.equals("d4")){
-                    p1.setText("Apakah si bayi sering bangun di malam hari setelah sebelumnya nyenyak?");
-                    posisi="d5";
+                else if(posisi.equals("d2")) {
+                    p3.setText("apakah ia terbangun di malam hari, menangis tanpa bisa diredakan,dan/atau menarik-narik salah satu telinganya?");
+                    posisi = "d3";
                 }
-                else if(posisi.equals("d5")){
-                    p1.setText("Segera periksa ke dokter!");
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-                }else if(posisi.equals("dl5")){
-                    p1.setText("mungkinkan bayi terbangun karena lapar?");
-                    posisi="dl6";
-                }else if(posisi.equals("dl6")){
-                    p1.setText("mungkinkah ia kedinginan atau gerah di malam hari?");
-                    posisi="dl7";
+
+
+else if(posisi.equals("d3")) {
+                    p3.setText("apakah nafasnya cepat dan tidak wajar?");
+                    posisi = "d4";
                 }
-                else if(posisi.equals("dl7")){
-                    p1.setText("apakah baru terjadi masalah rumahtangga atau sesuatu yang bisa menyebabkan kecemasan?");
-                    posisi="dl8";
-                }else if(posisi.equals("dl8")){
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + " kebutuhan kehadiran anda adalah penyebab terbanyak bayi terbangun di malam hari setelah lepas dari masa menyusu di malam hari. tetaplah menepati jadwal tidurnya ";
-                    p1.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
+
+                else if(posisi.equals("d4")) {
+                        p3.setText("adakah cairan bening dari hidung,dan/atau apakah dia bersin?");
+                        posisi = "d5";
+                    }
+
+else if(posisi.equals("d5")) {
+                    p3.setText("adakah salah satu gejala berikut?" +
+                            "1. mengantuk tidak wajar" +
+                            "2. gelisah" +
+                            "3. menangis menjerit atau tidak wajar" +
+                            "4. bintik rata merah gelap yang tidak memudar dengan tekanan");
+                    posisi = "d6";
+                }
+
+
+        else if(posisi.equals("d6")) {
+                    p3.setText("apakah si anak sedang diare?");
+                    posisi = "d7";
+                }
+
+
+        else if(posisi.equals("d7")) {
+                    p3.setText("apakah si bayi baru saja diimunisasi?");
+                    posisi = "d8";
                 }
 
 
 
+        else if(posisi.equals("d8")) {
+                    p3.setText("apakah pakaiannya sangat tebal dan/atau apakah ia di lingkungan berhawa hangat?");
+                    posisi = "d9";
+                }
 
 
-
-
+        else if(posisi.equals("d9")){
+            String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "PERIKSA KE DOKTER "  ;
+            p3.setText(Html.fromHtml(sourceString));
+            ya.startAnimation( animFadeOut );
+            tdk.startAnimation( animFadeOut );
+            ya.setVisibility(View.GONE);
+            tdk.setVisibility(View.GONE);}
             }
         });
     }

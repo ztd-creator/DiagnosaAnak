@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="file.project.diagnosaanak.penyakit.p3"
-    android:background="@drawable/p3"
+    tools:context="file.project.diagnosaanak.penyakit.P3"
+    android:background="@drawable/p1"
     android:orientation="vertical">
 
 
