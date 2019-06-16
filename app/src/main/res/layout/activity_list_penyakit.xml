@@ -304,14 +304,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p7"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="7." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -320,7 +320,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="pertambahan berat badan kurang" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -350,14 +350,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p8"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="8." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -366,7 +366,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah kulit pada bayi" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -396,14 +396,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p9"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="9." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -412,7 +412,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="merasa tidak sehat" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -442,14 +442,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p10"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="10." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -458,7 +458,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="keletihan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -488,14 +488,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p11"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="11." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -504,7 +504,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah tidur pada anak-anak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -534,14 +534,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p12"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="12." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -550,7 +550,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah pertumbuhan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -580,14 +580,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p13"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="13." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -596,7 +596,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="kenaikan timbangan berlebihan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -626,14 +626,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p14"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="14." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -642,7 +642,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="demam pada anak-anak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -672,14 +672,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p15"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="15." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -688,7 +688,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="ruam disertai demam" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -718,14 +718,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p16"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="16." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -734,7 +734,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah kulit pada anak-anak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -764,14 +764,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p17"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="17." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -780,7 +780,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="rambut, kulit kepala, dan kuku" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -810,14 +810,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p18"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="18." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -826,7 +826,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="gatal-gatal" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -856,14 +856,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p19"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="19." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -872,7 +872,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="benjolan dan bengkak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -902,14 +902,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p20"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="20." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -918,7 +918,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="pusing, pingsan, dan kejang-kejang" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -948,14 +948,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p21"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="21." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -964,7 +964,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="sakit kepala" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -994,14 +994,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p22"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="22." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1010,7 +1010,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="bingung dan atau mengantuk" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1040,14 +1040,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p23"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="23." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1056,7 +1056,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="canggung" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1086,14 +1086,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p24"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="24." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1102,7 +1102,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="kesulitan berbicara" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1132,14 +1132,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p25"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="25." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1148,7 +1148,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah perilaku" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1178,14 +1178,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p26"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="26." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1194,7 +1194,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="kesulitan bersekolah" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1224,14 +1224,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p27"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="27." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1240,7 +1240,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah mata" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1270,14 +1270,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p28"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="28." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1286,7 +1286,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="penglihatan terganggu atau rusak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1316,14 +1316,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p29"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="29." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1332,7 +1332,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="telinga nyeri dan perih" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1362,14 +1362,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p30"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="30." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1378,7 +1378,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah pendengaran" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1408,14 +1408,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p31"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="31." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1424,7 +1424,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="hidung berlendir dan mempet" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1454,14 +1454,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p32"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="32." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1470,7 +1470,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="tenggorokan serak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1500,14 +1500,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p33"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="33." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1516,7 +1516,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="batuk-batuk" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1546,14 +1546,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p34"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="34." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1562,7 +1562,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah pernafasan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1592,14 +1592,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p35"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="35." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1608,7 +1608,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah mulut" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1638,14 +1638,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p36"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="36." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1654,7 +1654,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah gigi" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1684,14 +1684,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p37"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="37." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1700,7 +1700,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah makan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1730,14 +1730,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p38"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="38." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1746,7 +1746,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="nyeri lambung" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1776,14 +1776,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p39"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="39." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1792,7 +1792,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="nyeri lambung" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1822,14 +1822,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p40"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="40." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1838,7 +1838,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="diare pada anak" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1868,14 +1868,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p41"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="41." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1884,7 +1884,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="sembelit" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1914,14 +1914,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p42"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="42." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1930,7 +1930,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="tinja tampak tak wajar" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1960,14 +1960,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p43"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="43." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -1976,7 +1976,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="masalah-masalah pada kemih" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -2006,14 +2006,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p44"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="44." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -2022,7 +2022,467 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="melatih ke kamar kecil" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p45"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="45." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="kelamin pada anak lelaki" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p46"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="46." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="kelamin pada anak perempuan" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p47"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="47." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="nyeri lengan atau tungkai" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p48"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="48." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="sendi dan tulang punggung" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p49"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="49." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="masalah-masalah kaki" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p50"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="50." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="lunglai" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p51"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="51." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="masalah berat badan remaja" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p52"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="52." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="masalah-masalah perilaku pada remaja" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p53"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="53." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="masalah di usia pubertas pada anak lelaki" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/next" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="5dp"
+                        android:background="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="p54"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text="54." />
+
+                        <TextView
+                            android:layout_width="280dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:layout_marginRight="10dp"
+                            android:textAllCaps="true"
+                            android:text="masalah di usia pubertas pada anak perempuan" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

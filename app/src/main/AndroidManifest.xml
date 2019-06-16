@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="file.project.diagnosaanak.penyakit.p55"></activity>
-        <activity android:name="file.project.diagnosaanak.penyakit.p4" />
-        <activity android:name="file.project.diagnosaanak.penyakit.P3" />
         <activity
             android:name="file.project.diagnosaanak.penyakit.p1"
             android:theme="@style/AppTheme.noActionBar" />
@@ -27,6 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="file.project.diagnosaanak.penyakit.P3"
+            android:theme="@style/AppTheme.noActionBar" />
+        <activity
+            android:name="file.project.diagnosaanak.penyakit.p55"
+            android:theme="@style/AppTheme.noActionBar" />
 
         <uses-library
             android:name="org.apache.http.legacy"

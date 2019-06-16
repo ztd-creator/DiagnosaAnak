@@ -171,7 +171,7 @@ public class ListPenyakit extends AppCompatActivity {
     public void p50(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
     }
-    public void p451(View v){
+    public void p51(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
     }
     public void p52(View v){
