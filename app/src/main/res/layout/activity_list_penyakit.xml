@@ -2052,14 +2052,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="p5"
+                        android:onClick="p55"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_height="match_parent"
                             android:gravity="left"
-                            android:text="4." />
+                            android:text="55." />
 
                         <TextView
                             android:layout_width="280dp"
@@ -2068,7 +2068,7 @@
                             android:gravity="left"
                             android:layout_marginRight="10dp"
                             android:textAllCaps="true"
-                            android:text="Muntah-muntah pada bayi" />
+                            android:text="Masalah kulit pada remaja" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
