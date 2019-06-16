@@ -42,6 +42,7 @@ public class P3 extends AppCompatActivity {
                 p1.setText("Apakah Usia Si bayi kurang dari 4 bulan?");
             }
         });
+        //tombol YA
         ya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,13 +166,19 @@ public class P3 extends AppCompatActivity {
 
             }
         });
+        //tombol TIDAK
         tdk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(posisi==null||posisi.equals("rev")){
                     p1.setText("Apakah bayi anda tidur lebih sedikit dari bayi lain seusianya?");
                     posisi="d2";
-                }else
+                }
+
+
+
+                else
                 if(posisi.equals("dl1")){
                     p1.setText("Apakah ia sering bangun di malam hari namum kembali tidur setelah disusui?");
                     posisi="rev";
