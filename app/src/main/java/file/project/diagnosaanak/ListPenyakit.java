@@ -8,9 +8,11 @@ import android.widget.Toast;
 
 import com.example.diagnosaanak.R;
 
+
 import file.project.diagnosaanak.penyakit.p1;
 import file.project.diagnosaanak.penyakit.p20;
 import file.project.diagnosaanak.penyakit.p21;
+
 
 public class ListPenyakit extends AppCompatActivity {
 
@@ -25,13 +27,16 @@ public class ListPenyakit extends AppCompatActivity {
          startActivity(new Intent(getApplicationContext(), p1.class));
     }
     public void p2(View v){
-        Toast.makeText(getApplicationContext(),"tes2",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+
     }
     public void p3(View v){
-        Toast.makeText(getApplicationContext(),"tes3",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+
     }
     public void p4(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+
     }
     public void p5(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
@@ -186,7 +191,8 @@ public class ListPenyakit extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
     }
     public void p55(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+
     }
     public void p56(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();

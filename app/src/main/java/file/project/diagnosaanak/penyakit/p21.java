@@ -62,13 +62,13 @@ public class p21 extends AppCompatActivity {
                     tdk.startAnimation(animFadeOut);
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
-                } else if (posisi.equals("d2")) {
-                    p21.setText("apakah si anak baru terbentur di kepala dalam 24 jam terakhir?");
+                }
+                else if (posisi.equals("d2")) {
+                    p21.setText("Adakah salah satu tanda bahaya di kotak peringatan di atas, atau apakah si anak baru muntah?sakit ");
                     posisi = "dl2";
                 } else if (posisi.equals("dl2")) {
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bahaya! Bawa ke Rumah Sakit Sekarang Juga!" +
-                            " Mungkin ia mengalami cedera otak karena benturan di kepala." + "<b>" +
-                            "tindakan " + "</b>" + "Di rumah sakit, si anak akan dawasi cermat dan perlu menjalani beberapa tes, misalnya scan-CT untuk menetapkan penanganan yang tepat.";
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Sakit kepala parah dengan gejala seperti ini mungkin migrain, terutama bila anggota keluarga ada juga yang mengidap migrain. Periksakanlah ke dokter." +
+                            "tindakan " + "</b>" + "Dokter akan memeriksa si anak untuk menutup kemungkinan penyebab lain. Gejalanya seringkali bisa diredakan sendiri dengan obat peredanyeri dan antiemetika (obat pereda mual), banyak minum dan istirahat di ruang gelap. Anda juga perlu mencari faktor pencetusnya, yang bisa berupa makanan atau aktifitas.";
                     p21.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
                     tdk.startAnimation(animFadeOut);
@@ -84,20 +84,8 @@ public class p21 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 } else if (posisi.equals("d4")) {
-                    p21.setText("adakah sakit kepalnya sering timbul dengan atau didahului salah satu gejala berikut?" +
-                            "1. mual atau muntah" +
-                            "2. sakit perut" +
-                            "3. penglihatan berkunang-kunang" +
-                            "4. tampak pucat ");
+                    p21.setText("Apakah si anak tampak sehat sebelum sakit kepala?");
                     posisi = "dl2";
-                } else if (posisi.equals("dl2")) {
-                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Kemungkinan penyebab. Sakit kepala parah dengan gejala seperti ini mungkin migrain, terutama bila anggota keluarga ada juga yang mengidap migrain. Periksakanlah ke dokter." +
-                            "Tindakan. Dokter akan memeriksa si anak untuk menutup kemungkinan penyebab lain. Gejalanya seringkali bisa diredakan sendiri dengan obat peredanyeri dan antiemetika (obat pereda mual), banyak minum dan istirahat di ruang gelap. Anda juga perlu mencari faktor pencetusnya, yang bisa berupa makanan atau aktifitas.";
-                    p21.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation(animFadeOut);
-                    tdk.startAnimation(animFadeOut);
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
                 } else if (posisi.equals("d5")) {
                     String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Kemungkinan penyebab. Suatu keluhan di mata kadang-kadang bisa menyebabkan sakit kepala setelah melakukan hal-hal seperti itu. Periksakanlah ke dokter mata." +
                             "Tindakan. Setelah melakukan beberapa tes penglihatan lengkap, bila ada masalah pada penglihatan, dokter mata akan meresepkan kacamata yang sesuai untuk si anak. Bila penglihatannya normal, dokter mata akan merujuk anda ke dokter umum untuk mencari penyebab sakit kepala tersebut.";
@@ -129,10 +117,6 @@ public class p21 extends AppCompatActivity {
                     tdk.startAnimation(animFadeOut);
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
-                } else if (posisi.equals("d8")) {
-                    p21.setText("seringkah sakit kepalanya, berkurangkah frekuensinya, atau berubahkah sifat sakit kepalanya?");
-                    posisi = "dl3";
-
                 }
             }
         });
@@ -172,7 +156,12 @@ public class p21 extends AppCompatActivity {
                 p21.setText("apakah si anak sedang memakai obat resep?");
                 posisi="d8";
             }
-                else if(posisi.equals("dl2")){
+                else if (posisi.equals("d8")) {
+                    p21.setText("seringkah sakit kepalanya, berkurangkah frekuensinya, atau berubahkah sifat sakit kepalanya?");
+                    posisi = "dl3";
+
+                }
+                else if(posisi.equals("dl1")){
                 String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Sakit demam seringkali disertai dengan sakit kepala.";
                 p21.setText(Html.fromHtml(sourceString));
                 ya.startAnimation( animFadeOut );
@@ -187,6 +176,16 @@ public class p21 extends AppCompatActivity {
                 ya.setVisibility(View.GONE);
                 tdk.setVisibility(View.GONE);
             }
+                else if (posisi.equals("dl2")) {
+                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Bawa ke Dokter Sekarang Juga\n" +
+                            "Kemungkinan penyebab. Bila si anak tampak lesu di saat skait kepalanya sedang tidak kambuh atau bila prestasinya di sekolah menurun belakangan ini, mungyada suatu kelainan serius di otak yang perlu segera diselidiki." +
+                            "Tindakan. Dokter akan memeriksa si anak dan mungkin merujuk si anak menjalani beberapa pemeriksaan misalnya MRI atau scan-CT untuk menetapkan penyebabnya.";
+                    p21.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation(animFadeOut);
+                    tdk.startAnimation(animFadeOut);
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);
+                }
             }
         });
     }}
