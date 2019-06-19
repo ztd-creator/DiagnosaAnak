@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.example.diagnosaanak.R;
 
 import file.project.diagnosaanak.penyakit.p1;
+import file.project.diagnosaanak.penyakit.p20;
+import file.project.diagnosaanak.penyakit.p21;
 
 public class ListPenyakit extends AppCompatActivity {
 
@@ -77,10 +79,12 @@ public class ListPenyakit extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
     }
     public void p20(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p20.class));
     }
     public void p21(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p21.class));
     }
     public void p22(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();

@@ -20,7 +20,7 @@ public class p20 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_p20;
+        setContentView(R.layout.activity_p20);
         posisi=null;
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.textout);
@@ -59,17 +59,16 @@ public class p20 extends AppCompatActivity {
                 else if(posisi.equals("dll1")){
                     String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bawa ke Dokter Sekarang Juga.\n" +
                             "Kemungkinan penyebab. Mungkin si anak baru terserang kejang panas. Kejang seringkali timbul akibat infeksi yang menaikkan temperatur. Walaupun membuat cemas, kejang-kejang seperti ini biasanya tidak membahayakan " +
-                             + "<b>" +
-                            "tindakan "+ "</b>"+ "\"Sambil menunggu bantuan medis,lakukan tindakan menurunkan demam si anak, dokter akan memeriksa untuk mencari penyebab demamnya. Pasa beberapa kasus, mungkin si anak perlu di rawat-inap di rumah sakit.";
+                              "<b>" +"tindakan "+ "</b>"+ "\"Sambil menunggu bantuan medis,lakukan tindakan menurunkan demam si anak, dokter akan memeriksa untuk mencari penyebab demamnya. Pasa beberapa kasus, mungkin si anak perlu di rawat-inap di rumah sakit.";
                     p20.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 }else if(posisi.equals("d2")) {
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bawa ke Dokter Sekarang Juga.\n" +
-                            "Kemungkinan penyebab. Mungkin si anak baru terserang kejang panas. Kejang seringkali timbul akibat infeksi yang menaikkan temperatur. Walaupun membuat cemas, kejang-kejang seperti ini biasanya tidak membahayakan." + "<b>" +
-                            "tindakan " + "</b>" + "Sambil menunggu bantuan medis, lakukanlah tindakan menurunkan demamnya. Dokter akan memeriksa untuk mencari penyebab demamnya.  Pada beberapa kasus, mungkin si anak perlu dirawat inap di rumah sakit.";
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bawa ke Dokter Sekarang Juga." +
+                            "Kemungkinan penyebab. Hipoglikemia parah,yaitu tingkat gula darah sangat rendah, mungkin penyebab hilangnya kesadaran ini.Tingkat gula darah si anak tidak akan kembali tanpa penanganan segera" + "<b>" +
+                            "tindakan " + "</b>" + "Bila anda sudah pernah dibekali obat suntik glukagon, suntikkanlah pada si anak sambil menunggu bantuan medis. jangan mencoba memberi makan atau minum apapun pada anak yang tidak sadar ";
                     p20.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
                     tdk.startAnimation(animFadeOut);
@@ -119,10 +118,32 @@ public class p20 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
+                    else
+                    if(posisi.equals("d5")){
+                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Bawa ke Dokter Sekarang Juga.\n" +
+                            "Kemungkinan penyebab dan tindakan. Ini mungkin serangan kejang umum, sejenis ayan yang dulu disebut 'petit mal'. Jangan hentikan kejangnya dengan mengguncang atau menamparnya. Dokter mungkin akan merujuk si anak menjalani pemeriksaan EEG untuk merekam aktifitas listrik di otaknya. Mungkin ia akan diobati dengan antikonvulsan untuk mengontrol kondisinya.";
+                    p20.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
+                    else if(posisi.equals("d6")) {
+                        p20.setText("apakah si anak sedang memakai obat resep?");
+                        posisi ="dl2";
+
+                    } else if(posisi.equals("d7")) {
+                        p20.setText("adakah perubahan perilaku si anak belakangan ini?");
+                        posisi ="dl3";
+
+                    }
 
 
 
-            }
+
+
+
+                    }
 
 
 
@@ -132,12 +153,15 @@ public class p20 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null||posisi.equals("rev")){
-                    p20.setText("apakah si anak sedang minum obat diabetes?");
-                    posisi="d2";
+                    p20.setText("adakah keadaan di mana si anak sesaat tampak seperti tidak menyadari sekitarnya?");
+                    posisi="d5";
                 }else if(posisi.equals("d2")) {
                     p20.setText("apakah usianya di bawah 5 tahun dan apakah ia demam sebelum hilang kesadaran?");
                     posisi = "d3";
-                }else if(posisi.equals("d3")) {
+                }else if(posisi.equals("dl1")) {
+                    p20.setText("apakah si anak sedang minum obat diabetes?");
+                    posisi = "d2";
+                } else if(posisi.equals("d3")) {
                     p20.setText("adakah salah satu hal berikut?" +
                             "1. Hawa sekitar panas atau kekurangan oksigen" +
                             "2. terlalu lama berdiri" +
@@ -150,9 +174,7 @@ public class p20 extends AppCompatActivity {
                     tdk.startAnimation(animFadeOut);
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
-                }else if(posisi.equals("d1")) {
-                    p20.setText("adakah keadaan di mana si anak sesaat tampak seperti tidak menyadari sekitarnya?");
-                    posisi = "d5";
+
                 }else if(posisi.equals("d5")) {
                     p20.setText("apakah si anak mengalami hal-hal berikut?" +
                             "1. merasa sekitarnya seperti berputar" +
@@ -187,9 +209,9 @@ public class p20 extends AppCompatActivity {
                     posisi = "dl3";
                 }
                 else if(posisi.equals("dll1")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bawa ke Dokter Sekarang Juga.\n" +
+                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Bawa ke Dokter Sekarang Juga." +
                             "Kemungkinan penyebab. Si anak baru terserang ayan. Mungkin ia mengidap epilepsi." +
-                            + "<b>" +
+                             "<b>" +
                             "tindakan "+ "</b>"+ "\"Tindakan. Bila si anak belum pernah terserang ayan, dokter akan memeriksanya dan meminta si anak menjalani pemeriksaan EEG untuk merekam aktifitas listrik otak. Diagnosa ini hany bisa dipastikan setelag si anak mengalami dua kali serangan atau lebih.  Bila mengidap epilepsi, si anak mungkin aka  diobati dengan antikonvulsan untuk mencegah serangan lebih lanjut.";
                     p20.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
