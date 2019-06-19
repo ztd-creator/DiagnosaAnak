@@ -2374,6 +2374,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         android:onClick="p52"
                         android:orientation="horizontal">
                         <TextView
@@ -2382,6 +2383,7 @@
                             android:layout_height="match_parent"
                             android:gravity="left"
                             android:text="52." />
+
 
                         <TextView
                             android:layout_width="280dp"

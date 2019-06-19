@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name="file.project.diagnosaanak.penyakit.p21"></activity>
         <activity
             android:name="file.project.diagnosaanak.penyakit.p1"
+            android:theme="@style/AppTheme.noActionBar" />
+        <activity
+            android:name="file.project.diagnosaanak.penyakit.p20"
             android:theme="@style/AppTheme.noActionBar" />
         <activity android:name="file.project.diagnosaanak.ListPenyakit">
             <intent-filter>
