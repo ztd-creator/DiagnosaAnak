@@ -11,6 +11,14 @@ import com.example.diagnosaanak.R;
 import file.project.diagnosaanak.penyakit.p1;
 import file.project.diagnosaanak.penyakit.p20;
 import file.project.diagnosaanak.penyakit.p21;
+import file.project.diagnosaanak.penyakit.p22;
+import file.project.diagnosaanak.penyakit.p23;
+import file.project.diagnosaanak.penyakit.p24;
+import file.project.diagnosaanak.penyakit.p25;
+import file.project.diagnosaanak.penyakit.p26;
+import file.project.diagnosaanak.penyakit.p27;
+import file.project.diagnosaanak.penyakit.p28;
+import file.project.diagnosaanak.penyakit.p29;
 
 public class ListPenyakit extends AppCompatActivity {
 
@@ -87,28 +95,36 @@ public class ListPenyakit extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), p21.class));
     }
     public void p22(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p22.class));
     }
     public void p23(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p23.class));
     }
     public void p24(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p24.class));
     }
     public void p25(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p25.class));
     }
     public void p26(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p26.class));
     }
     public void p27(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p27.class));
     }
     public void p28(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p28.class));
     }
     public void p29(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p29.class));
     }
     public void p30(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
