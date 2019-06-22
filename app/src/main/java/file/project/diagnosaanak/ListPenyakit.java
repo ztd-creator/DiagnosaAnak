@@ -19,6 +19,7 @@ import file.project.diagnosaanak.penyakit.p26;
 import file.project.diagnosaanak.penyakit.p27;
 import file.project.diagnosaanak.penyakit.p28;
 import file.project.diagnosaanak.penyakit.p29;
+import file.project.diagnosaanak.penyakit.p30;
 
 public class ListPenyakit extends AppCompatActivity {
 
@@ -127,7 +128,8 @@ public class ListPenyakit extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), p29.class));
     }
     public void p30(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p30.class));
     }
     public void p31(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();

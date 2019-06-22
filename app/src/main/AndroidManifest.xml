@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="file.project.diagnosaanak.penyakit.p29"></activity>
+        <activity android:name="file.project.diagnosaanak.penyakit.p30"></activity>
+        <activity android:name="file.project.diagnosaanak.penyakit.p29" />
         <activity android:name="file.project.diagnosaanak.penyakit.p28" />
         <activity android:name="file.project.diagnosaanak.penyakit.p27" />
         <activity android:name="file.project.diagnosaanak.penyakit.p26" />

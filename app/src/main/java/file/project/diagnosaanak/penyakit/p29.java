@@ -118,14 +118,6 @@ public class p29 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);}
 
 
-
-
-
-
-
-
-
-
             }
 
 
