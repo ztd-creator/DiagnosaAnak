@@ -20,6 +20,11 @@ import file.project.diagnosaanak.penyakit.p27;
 import file.project.diagnosaanak.penyakit.p28;
 import file.project.diagnosaanak.penyakit.p29;
 import file.project.diagnosaanak.penyakit.p30;
+import file.project.diagnosaanak.penyakit.p31;
+import file.project.diagnosaanak.penyakit.p32;
+import file.project.diagnosaanak.penyakit.p33;
+import file.project.diagnosaanak.penyakit.p34;
+import file.project.diagnosaanak.penyakit.p35;
 
 public class ListPenyakit extends AppCompatActivity {
 
@@ -132,19 +137,24 @@ public class ListPenyakit extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), p30.class));
     }
     public void p31(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p31.class));
     }
     public void p32(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p32.class));
     }
     public void p33(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p33.class));
     }
     public void p34(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p34.class));
     }
     public void p35(View v){
-        Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), p35.class));
     }
     public void p36(View v){
         Toast.makeText(getApplicationContext(),"tes4",Toast.LENGTH_LONG).show();

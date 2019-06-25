@@ -172,7 +172,7 @@ public class p21 extends AppCompatActivity {
                 p21.setText("apakah si anak sedang memakai obat resep?");
                 posisi="d8";
             }
-                else if(posisi.equals("dl2")){
+                else if(posisi.equals("dl1")){
                 String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "Sakit demam seringkali disertai dengan sakit kepala.";
                 p21.setText(Html.fromHtml(sourceString));
                 ya.startAnimation( animFadeOut );
