@@ -69,7 +69,7 @@ public class p45 extends AppCompatActivity {
                 }
 
                 else if (posisi.equals("dl3")) {
-                    String sourceString = "<b>" + "EMUNGKINAN PENYEBAB Si anak mungkin menderita hernia, yaitu sebagian kecil usus menerobos bagian yang lemah di dinding perut. Kondisi ini paling banyak terjadi pada bayi."  +
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB Si anak mungkin menderita hernia, yaitu sebagian kecil usus menerobos bagian yang lemah di dinding perut. Kondisi ini paling banyak terjadi pada bayi."  +
                             "Tindakan " + "</b>" + "Dokter akan memeriksa si anak. Bila diagnosa ini benar, hernianya harus diperbaiki untuk mencegah kemungkinan terjepitnya bagian usus tersebut. Operasinya dilakukan di bawah pembiusan umum.";
                     p45.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
