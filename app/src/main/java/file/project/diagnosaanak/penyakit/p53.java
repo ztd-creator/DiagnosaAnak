@@ -66,7 +66,11 @@ public class p53 extends AppCompatActivity {
                 tdk.setVisibility(View.GONE);}
 
                 else if(posisi.equals("dll1")){
+<<<<<<< HEAD
+            String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN Si anak sudah menunjukkan gejala awal pubertas. Walau lebih lambat dari normal, hal ini tidak perlu dicemaskan. Ia akan terus tumbuh, dan pubertas baru akan selesai dalam 5 tahun berikutnya. Selamat si anak tampak sehat dan terus tumbuh, agaknya tidak perlu memeriksakannya ke dokter.";
+=======
             String sourceString = "<b >" + "KEMUNGKINAN PENYEBAB DAN TINDAKA" + "<b>" +  "Si anak sudah menunjukkan gejala awal pubertas. Walau lebih lambat dari normal, hal ini tidak perlu dicemaskan. Ia akan terus tumbuh, dan pubertas baru akan selesai dalam 5 tahun berikutnya. Selamat si anak tampak sehat dan terus tumbuh, agaknya tidak perlu memeriksakannya ke dokter.";
+>>>>>>> origin/master
             p53.setText(Html.fromHtml(sourceString));
             ya.startAnimation( animFadeOut );
             tdk.startAnimation( animFadeOut );
@@ -80,7 +84,11 @@ public class p53 extends AppCompatActivity {
         }
 
         else if(posisi.equals("dl2")){
+<<<<<<< HEAD
+            String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN Beberapa sakit menahun bisa menunda sementara mulainya pubertas. Tanyakan kecemasan anda ini pada dokter yang biasa menangani si anak.";
+=======
             String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN" + "<b>" + "Beberapa sakit menahun bisa menunda sementara mulainya pubertas. Tanyakan kecemasan anda ini pada dokter yang biasa menangani si anak.";
+>>>>>>> origin/master
             p53.setText(Html.fromHtml(sourceString));
             ya.startAnimation( animFadeOut );
             tdk.startAnimation( animFadeOut );
@@ -124,7 +132,11 @@ public class p53 extends AppCompatActivity {
         }
 
         else if(posisi.equals("dll1")){
+<<<<<<< HEAD
+        String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN Pada anak lelaki, ini wajar karena gejala pertama pubertas akan terjadi di antara usia 9-15 tahun. Bila si anak mencemaskan tubuhnya lebih pendek daripada teman-temannya, yakinkan dia bahwa tubuhnya akan segera meninggi. Lonjakan laju pertumbuhan remajanya biasanya mulai di pertengahan sampai akhir pubertas.";
+=======
         String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN" + "<b>" +  "Pada anak lelaki,  ini wajar karena gejala pertama pubertas akan terjadi di antara usia 9-15 tahun. Bila si anak mencemaskan tubuhnya lebih pendek daripada teman-temannya, yakinkan dia bahwa tubuhnya akan segera meninggi. Lonjakan laju pertumbuhan remajanya biasanya mulai di pertengahan sampai akhir pubertas.";
+>>>>>>> origin/master
         p53.setText(Html.fromHtml(sourceString));
         ya.startAnimation( animFadeOut );
         tdk.startAnimation( animFadeOut );

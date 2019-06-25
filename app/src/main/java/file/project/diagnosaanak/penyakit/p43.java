@@ -87,6 +87,8 @@ public class p43 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 }
+<<<<<<< HEAD
+=======
 
                 else if (posisi.equals("dll3")) {
                     String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + "Adalah wajar bila seseorang menjadi ingin sering buang air kecil ketika sedang kegirangan, cemas,atau kedinginan. Bila si anak masih juga terlalu sering buang air kecil sesudah keadaan kembali normal, periksalah ke dokter.";
@@ -96,6 +98,7 @@ public class p43 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 }
+>>>>>>> origin/master
                 else if (posisi.equals("d4")) {
                     String sourceString = "<b>" + "Kemungkinan Penyebab " + "</b> " + "Mungkin si anak menderita phimosis, yaitu lubang kulup terlalu sempit";
                     p43.setText(Html.fromHtml(sourceString));
@@ -174,10 +177,13 @@ public class p43 extends AppCompatActivity {
                     posisi = "d4";
                 }
 
+<<<<<<< HEAD
+=======
                 else if(posisi.equals("dl3")) {
                     p43.setText("apakah ia sedang girang,cemas,atau kedinginan?");
                     posisi = "dll3";
                 }
+>>>>>>> origin/master
                 else if(posisi.equals("d4")) {
                     p43.setText("Apakah urinnya tampak berubah warna?");
                     posisi = "d5";
@@ -208,6 +214,8 @@ public class p43 extends AppCompatActivity {
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
+<<<<<<< HEAD
+=======
 
                 else if(posisi.equals("dll3")){
                     String sourceString = "<b>" + "Periksalah Ke Dokter";
@@ -216,6 +224,7 @@ public class p43 extends AppCompatActivity {
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
+>>>>>>> origin/master
             }
         });
     }

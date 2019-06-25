@@ -146,7 +146,9 @@ public class p47 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);}
 
                 else if (posisi.equals("dl1")) {
+
                     String sourceString =  "<b>" + "Kemungkinan Penyebab" + "</b> " + "Terkilir ringan pada ligament atau otot anggota tubuh adalah kemungkinan terbesar penyebab nyerinya." + "<b>" +
+
                             "Tindakan " + "</b>" + "Ikuti langkah-langkah mengatasi terkilir pada anak-anak. Bila sakitnya parah atau tidak berkurang sampai esok harinya, periksakan ke dokter dalam 24 jam.";
                     p47.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
