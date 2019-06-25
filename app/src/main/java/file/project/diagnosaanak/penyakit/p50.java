@@ -39,20 +39,15 @@ public class p50 extends AppCompatActivity {
                 mulai.setVisibility(View.GONE);
                 findViewById(R.id.cardviewDiagnosa).setVisibility(View.VISIBLE);
 
-                p50.setText("Mungkinkah si anak beru terkena cedera?");
+                p50.setText("Mungkinkah si anak baru terkena cedera?");
             }
         });
         ya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(posisi==null){
-<<<<<<< HEAD
                     String sourceString =  "</b> " + "Bawa ke dokter sekarang juga" +
                             "KEMUNGKINAN PENYEBAB DAN TINDAKAN Pada anak kecil, satu-satunya bukti cedera mungkin hanyalah lemas atau enggan bertumpu ke kaki yang cedera. Dokter akan memeriksa si anak untuk memastikan diagnosa ini, dan bila perlu akan merujuk si anak ke rumah sakit untuk menjalani beberapa tes dan perawatan. ";
-=======
-                    String sourceString =  "</b> " + "Bawa ke dokter sekarang juga" + "</b> " +
-                    "KEMUNGKINAN PENYEBAB DAN TINDAKAN Pada anak kecil, satu-satunya bukti cedera mungkin hanyalah lemas atau enggan bertumpu ke kaki yang cedera. Dokter akan memeriksa si anak untuk memastikan diagnosa ini, dan bila perlu akan merujuk si anak ke rumah sakit untuk menjalani beberapa tes dan perawatan. ";
->>>>>>> origin/master
                     p50.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
                     tdk.startAnimation(animFadeOut);
@@ -73,6 +68,16 @@ public class p50 extends AppCompatActivity {
                     p50.setText("apakah si anak baru saja terinfeksi, misalnya tenggorokan serak?");
                     posisi = "dl3";
                 }
+
+                else if(posisi.equals("d4")){
+                    String sourceString = "<b>" + "BAWA KE DOKTER DALAM 24 JAM" + "</b> " + " KEMUNGKINAN PENYEBAB Pembengkakan bonggol limfe bisa membuat seorang anak sulit berjalan wajar. Bengkaknya mungkin disebabkan oleh infeksi seperti demam-kelenjar atau sebagai reaksi atau sebuah cedera di tungkai ataupun kaki." + "<b>" +
+                            "Tindakan "+ "</b>"+ "Dokter akan memeriksa si anak dan juga melakukan tes darah untuk memeriksa adanya infeksi. Bila ada cedera yang terinfeksi, akan diperlukan antibiotika.";
+                    p50.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
 
                 else if (posisi.equals("dl3")) {
                     String sourceString = "<b>" + "BAWA KE DOKTER DALAM 24 JAM" + "</b> " + " KEMUNGKINAN PENYEBAB Mungkin ia mengalami iritasi pinggul, yaitu permukaan sendi meradan akibat infeksi lain di tubuh baru baru ini" + "<b>" +
@@ -101,18 +106,6 @@ public class p50 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
-<<<<<<< HEAD
-=======
-                else if(posisi.equals("d4")){
-                    String sourceString = "<b>" + "BAWA KE DOKTER DALAM 24 JAM" + "</b> " + " KEMUNGKINAN PENYEBAB Pembengkakan bonggol limfe bisa membuat seorang anak sulit berjalan wajar. Bengkaknya mungkin disebabkan oleh infeksi seperti demam-kelenjar atau sebagai reaksi atau sebuah cedera di tungkai ataupun kaki." + "<b>" +
-                            "Tindakan "+ "</b>"+ "Dokter akan memeriksa si anak dan juga melakukan tes darah untuk memeriksa adanya infeksi. Bila ada cedera yang terinfeksi, akan diperlukan antibiotika.";
-                    p50.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);}
-
->>>>>>> origin/master
 
             }
         });
@@ -134,18 +127,6 @@ public class p50 extends AppCompatActivity {
                     posisi = "d4";
                 }
 
-<<<<<<< HEAD
-                else if(posisi.equals("d4")){
-                    String sourceString = "<b>" + "BAWA KE DOKTER DALAM 24 JAM" + "</b> " + " KEMUNGKINAN PENYEBAB Pembengkakan bonggol limfe bisa membuat seorang anak sulit berjalan wajar. Bengkaknya mungkin disebabkan oleh infeksi seperti demam-kelenjar atau sebagai reaksi atau sebuah cedera di tungkai ataupun kaki." + "<b>" +
-                            "Tindakan "+ "</b>"+ "Dokter akan memeriksa si anak dan juga melakukan tes darah untuk memeriksa adanya infeksi. Bila ada cedera yang terinfeksi, akan diperlukan antibiotika.";
-                    p50.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);}
-=======
-
->>>>>>> origin/master
 
                 else if(posisi.equals("dl3")) {
                     p50.setText("Apakah usianya si anak antara 4-8 tahun?");
@@ -167,8 +148,7 @@ public class p50 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
-<<<<<<< HEAD
-=======
+
                 else if (posisi.equals("d4")) {
                     String sourceString = "<b>" + "Periksakan ke Dokter Dalam 24 Jam";
                     p50.setText(Html.fromHtml(sourceString));
@@ -176,8 +156,6 @@ public class p50 extends AppCompatActivity {
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
->>>>>>> origin/master
-
 
             }
         });

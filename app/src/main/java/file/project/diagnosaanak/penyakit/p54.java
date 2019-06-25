@@ -49,25 +49,17 @@ public class p54 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null){
-<<<<<<< HEAD
-                        String sourceString = "<b>" + "Pubertas anak anda sudah dimulai terlalu dini. Seringkali tidak diketahui apa penyebab pubertas terlalu dini, namun pada beberapa kasus hal itu diduga karena ada masalah dipusat kendali pembuatan hormone di otak. Periksakanlah ke dokter." + "<b>" +
-=======
-                        String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" +  "Pubertas anak anda sudah dimulai terlalu dini. Seringkali tidak diketahui apa penyebab pubertas terlalu dini, namun pada beberapa kasus hal itu diduga karena ada masalah dipusat kendali pembuatan hormone di otak. Periksakanlah ke dokter." + "<b>" +
->>>>>>> origin/master
-                                "Tindakan "+ "</b>"+ "Dokter akan memeriksa hasil tes darah dan merujuk si anak ke seorang spesialis. Bila sudah memasuki pubertas , si anak mungkin akan diberi resep obat untuk memperlambat prosesnya. Obat itu akan menjaga agar penurunan laju pertumbuh";
-                        p54.setText(Html.fromHtml(sourceString));
-                        ya.startAnimation( animFadeOut );
-                        tdk.startAnimation( animFadeOut );
-                        ya.setVisibility(View.GONE);
-                        tdk.setVisibility(View.GONE);}
+                    String sourceString = "<b>" + "Pubertas anak anda sudah dimulai terlalu dini. Seringkali tidak diketahui apa penyebab pubertas terlalu dini, namun pada beberapa kasus hal itu diduga karena ada masalah dipusat kendali pembuatan hormone di otak. Periksakanlah ke dokter." + "<b>" +
+                            "Tindakan "+ "</b>"+ "Dokter akan memeriksa hasil tes darah dan merujuk si anak ke seorang spesialis. Bila sudah memasuki pubertas , si anak mungkin akan diberi resep obat untuk memperlambat prosesnya. Obat itu akan menjaga agar penurunan laju pertumbuh";
+                    p54.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
                 else if(posisi.equals("d3")){
-<<<<<<< HEAD
                     String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB Adalah biasa bila seorang gadis mengalami kekacauan jadwal haid di tahun-tahun pertama. Bisa sampai 40 siklus sebelum tubuh memapankan polanya. Namun kemungkinan hamil juga perlu dipertimbangkan.";
-=======
-                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" + "Adalah biasa bila seorang gadis mengalami kekacauan jadwal haid di tahun-tahun pertama. Bisa sampai 40 siklus sebelum tubuh memapankan polanya. Namun kemungkinan hamil juga perlu dipertimbangkan.";
->>>>>>> origin/master
                     p54.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
@@ -84,12 +76,12 @@ public class p54 extends AppCompatActivity {
 
                 else
                 if(posisi.equals("dl2")){
-                String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + "Meskipun belum haid, si anak sudah menunjukkan mulainya tanda-tanda pubertas. Walaupun lebih lambat dari normal, hal ini tidak perlu dicemaskan. Ia akan terus tumbuh normal, dan pubertas akan selesai dalam 5 tahun. Tidak perlu memeriksakannya ke dokter, kecuali bila anda atau anak anda cemas ";
-                p54.setText(Html.fromHtml(sourceString));
-                ya.startAnimation( animFadeOut );
-                tdk.startAnimation( animFadeOut );
-                ya.setVisibility(View.GONE);
-                tdk.setVisibility(View.GONE);}
+                    String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + "Meskipun belum haid, si anak sudah menunjukkan mulainya tanda-tanda pubertas. Walaupun lebih lambat dari normal, hal ini tidak perlu dicemaskan. Ia akan terus tumbuh normal, dan pubertas akan selesai dalam 5 tahun. Tidak perlu memeriksakannya ke dokter, kecuali bila anda atau anak anda cemas ";
+                    p54.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
                 else
                 if(posisi.equals("dll2")){
@@ -118,7 +110,7 @@ public class p54 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
-                }
+            }
         });
         tdk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,14 +147,14 @@ public class p54 extends AppCompatActivity {
                     p54.setText("Apakah si anak sedang mengalami sakit menahun, misalnya sistik fibrosis atau arthritis?");
                     posisi = "dllll2";
                 }
-                    else
-                    if(posisi.equals("dllll2")){
-                        String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + " Anak anda mengalami pubertas terlambat. Walau seringkali tidak jelas penyebab pubertas terlambat, namun hal itu cenderung diturunkan dalam keluargan dan lebih umum terjadi pada anak yang bertubuh pendek. Konsultasikan ke dokter, yang setelah memeriksanya mungkin akan minta si anak menjalani tes darah untuk mengukur tingkat hormonnya. Bila perlu, dokter juga akan merujuk anak anda ke seorang spesialis.";
-                        p54.setText(Html.fromHtml(sourceString));
-                        ya.startAnimation( animFadeOut );
-                        tdk.startAnimation( animFadeOut );
-                        ya.setVisibility(View.GONE);
-                        tdk.setVisibility(View.GONE);}
+                else
+                if(posisi.equals("dllll2")){
+                    String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + " Anak anda mengalami pubertas terlambat. Walau seringkali tidak jelas penyebab pubertas terlambat, namun hal itu cenderung diturunkan dalam keluargan dan lebih umum terjadi pada anak yang bertubuh pendek. Konsultasikan ke dokter, yang setelah memeriksanya mungkin akan minta si anak menjalani tes darah untuk mengukur tingkat hormonnya. Bila perlu, dokter juga akan merujuk anak anda ke seorang spesialis.";
+                    p54.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
             }

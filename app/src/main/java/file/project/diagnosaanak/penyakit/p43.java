@@ -87,18 +87,6 @@ public class p43 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 }
-<<<<<<< HEAD
-=======
-
-                else if (posisi.equals("dll3")) {
-                    String sourceString = "<b>" + "Kemungkinan Penyebab dan Tindakan" + "</b> " + "Adalah wajar bila seseorang menjadi ingin sering buang air kecil ketika sedang kegirangan, cemas,atau kedinginan. Bila si anak masih juga terlalu sering buang air kecil sesudah keadaan kembali normal, periksalah ke dokter.";
-                    p43.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation(animFadeOut);
-                    tdk.startAnimation(animFadeOut);
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);
-                }
->>>>>>> origin/master
                 else if (posisi.equals("d4")) {
                     String sourceString = "<b>" + "Kemungkinan Penyebab " + "</b> " + "Mungkin si anak menderita phimosis, yaitu lubang kulup terlalu sempit";
                     p43.setText(Html.fromHtml(sourceString));
@@ -144,7 +132,7 @@ public class p43 extends AppCompatActivity {
                 }
 
 
-}
+            }
 
 
         });
@@ -160,12 +148,12 @@ public class p43 extends AppCompatActivity {
                 }
 
                 else if(posisi.equals("dl1")) {
-                p43.setText("adakah salah satu gejala beriku,dengan atau tanpa demam?" +
-                        "1. sering buang air kecil dan urin selalu sedikit" +
-                        "2. mengompol saat tidur atau di saat bangun walau sudah bisa menahan" +
-                        "3. urin berbau menyengat atau berwarna keruh");
-                posisi="d2";
-            }
+                    p43.setText("adakah salah satu gejala beriku,dengan atau tanpa demam?" +
+                            "1. sering buang air kecil dan urin selalu sedikit" +
+                            "2. mengompol saat tidur atau di saat bangun walau sudah bisa menahan" +
+                            "3. urin berbau menyengat atau berwarna keruh");
+                    posisi="d2";
+                }
 
                 else if(posisi.equals("d2")) {
                     p43.setText("Apakah si anak berkemih lebih banyak dari biasa?");
@@ -177,13 +165,6 @@ public class p43 extends AppCompatActivity {
                     posisi = "d4";
                 }
 
-<<<<<<< HEAD
-=======
-                else if(posisi.equals("dl3")) {
-                    p43.setText("apakah ia sedang girang,cemas,atau kedinginan?");
-                    posisi = "dll3";
-                }
->>>>>>> origin/master
                 else if(posisi.equals("d4")) {
                     p43.setText("Apakah urinnya tampak berubah warna?");
                     posisi = "d5";
@@ -214,17 +195,6 @@ public class p43 extends AppCompatActivity {
                     tdk.startAnimation( animFadeOut );
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
-<<<<<<< HEAD
-=======
-
-                else if(posisi.equals("dll3")){
-                    String sourceString = "<b>" + "Periksalah Ke Dokter";
-                    p43.setText(Html.fromHtml(sourceString));
-                    ya.startAnimation( animFadeOut );
-                    tdk.startAnimation( animFadeOut );
-                    ya.setVisibility(View.GONE);
-                    tdk.setVisibility(View.GONE);}
->>>>>>> origin/master
             }
         });
     }

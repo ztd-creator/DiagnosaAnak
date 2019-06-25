@@ -63,11 +63,7 @@ public class p52 extends AppCompatActivity {
 
                 else if(posisi.equals("d3")){
                     String sourceString = "<b>" + "Bawa ke dokter dalam 24 jam" + "</b> " +
-<<<<<<< HEAD
                             "KEMUNGKINAN PENYEBAB DAN TINDAKAN Si anak mungkin mengidap masalah kesehatan mental serius yang memerlukan penanganan segera untuk mencegah timbulnya masalah yang berkaitan dengan keterampilan sosial dan pendidikan. Dokter mungkin akan merujuknya ke rumah sakit untuk diperiksa. Pada si anak bisa diberikan obat untuk mengontrol gejalanya, dan diikutkan konseling untuk mengatasi penyebab tersembunyi dari masalahnya.";
-=======
-                            "</b> " + "KEMUNGKINAN PENYEBAB DAN TINDAKAN" + "</b>" + "Si anak mungkin mengidap masalah kesehatan mental serius yang memerlukan penanganan segera untuk mencegah timbulnya masalah yang berkaitan dengan keterampilan sosial dan pendidikan. Dokter mungkin akan merujuknya ke rumah sakit untuk diperiksa. Pada si anak bisa diberikan obat untuk mengontrol gejalanya, dan diikutkan konseling untuk mengatasi penyebab tersembunyi dari masalahnya.";
->>>>>>> origin/master
                     p52.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );

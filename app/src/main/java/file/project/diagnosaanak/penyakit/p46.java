@@ -79,11 +79,7 @@ public class p46 extends AppCompatActivity {
                 }
 
                 else if (posisi.equals("dlll1")) {
-<<<<<<< HEAD
                     String sourceString = "<b>" + "Kemungkinan Penyebab" + "</b> " + "Mungkin si anak mengidap cacinng gelang. Cacing putih halus sepanjang sekitar 1 cm ini menginfeksi usus dan meletakkan telur di sekitar anus di malam hari. Menimbulkan iritasi di anus dan daerah kemaluan. Walau tidak berbahaya, cacing ini bisa menulari orang lain atau tercampur dalam makanan. Periksakan ke dokter." + "<b>" +
-=======
-                    String sourceString = "<b>" + "Kemungkinan Penyebab" + "</b> " + "Mungkin si anak mengidap cacing gelang. Cacing putih halus sepanjang sekitar 1 cm ini menginfeksi usus dan meletakkan telur di sekitar anus di malam hari. Menimbulkan iritasi di anus dan daerah kemaluan. Walau tidak berbahaya, cacing ini bisa menulari orang lain atau tercampur dalam makanan. Periksakan ke dokter." + "<b>" +
->>>>>>> origin/master
                             "Tindakan " + "</b>" + "Setelah memeriksa dan bila menduga ini akibat cacing gelang, dokter akan meresepkan obat pemusnah cacing ini. Semua anggota keluarga juga perlu diobati untuk mencegah pengulangan infeksi. Pastikan si anak lebih cermat membasuh tangan setiap selesai dari kamar kecil dan sebelum makan.";
                     p46.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
@@ -137,11 +133,7 @@ public class p46 extends AppCompatActivity {
                     posisi = "dllll1";
                 }
 
-<<<<<<< HEAD
                 else if (posisi.equals("dlllll")) {
-=======
-                else if (posisi.equals("dllll1")) {
->>>>>>> origin/master
                     String sourceString = "<b>" + "Periksalah Ke Dokter" ;
                     p46.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
@@ -149,7 +141,7 @@ public class p46 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
-         }
+            }
         });
     }
 

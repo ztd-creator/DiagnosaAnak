@@ -75,11 +75,7 @@ public class p48 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);
                 }
 
-<<<<<<< HEAD
                 else if (posisi.equals("dl2")) {
-=======
-                else if (posisi.equals("dll2")) {
->>>>>>> origin/master
                     String sourceString = "<b>" + "Kemungkinan Penyebab" + "</b> " + "Nyeri di salah satu daerah ini bisa menandakan adanya masalah di sendi pinggul, yang sering membuat anak lemas." + "<b>";
                     p48.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
@@ -165,11 +161,7 @@ public class p48 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null||posisi.equals("d1")){
-<<<<<<< HEAD
                     p48.setText("apakah skitnya di satu sendi saja?");
-=======
-                    p48.setText("apakah sakitnya di satu sendi saja?");
->>>>>>> origin/master
                     posisi = "d2";
                 }
 
@@ -205,6 +197,15 @@ public class p48 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
+                else if (posisi.equals("d4")) {
+                    String sourceString = "<b>" + "Periksalah Ke Dokter" ;
+                    p48.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
+
                 else if(posisi.equals("dl3")) {
                     p48.setText("apakah si anak demam, merasa lesu,dan/atau ada bintik-bintik ruam?");
                     posisi = "dll3";
@@ -224,45 +225,28 @@ public class p48 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);
                 }
-<<<<<<< HEAD
-                        else if(posisi.equals("d4")) {
-                        p48.setText("Apakah ia terbangun di tengah malam karena sakit di punggung, atau punggung kaku pada saat terbangun?");
-                        posisi = "d5";
-                    }
-=======
+
+                else if(posisi.equals("d5")) {
+                    p48.setText("Apakah tulang punggung si anak tampak melengkung ke samping?");
+                    posisi = "d6";
 
 
-                      else if(posisi.equals("d4")){
-                String sourceString = "<b>" + "Periksalah Ke Dokter";
-                p48.setText(Html.fromHtml(sourceString));
-                ya.startAnimation( animFadeOut );
-                tdk.startAnimation( animFadeOut );
-                ya.setVisibility(View.GONE);
-                tdk.setVisibility(View.GONE);}
-
-
->>>>>>> origin/master
-                    else if(posisi.equals("d5")) {
-                        p48.setText("Apakah tulang punggung si anak tampak melengkung ke samping?");
-                        posisi = "d6";
-
-
-                    }
+                }
 
                 else if(posisi.equals("d6")) {
                     p48.setText("Apakah nyeri punggungnya timbul setelah berolahraga berat?");
                     posisi = "d7";
                 }
-                      else if(posisi.equals("d7")){
-                        String sourceString = "<b>" + "Periksalah Ke Dokter";
-                        p48.setText(Html.fromHtml(sourceString));
-                        ya.startAnimation( animFadeOut );
-                        tdk.startAnimation( animFadeOut );
-                        ya.setVisibility(View.GONE);
-                        tdk.setVisibility(View.GONE);}
+                else if(posisi.equals("d7")){
+                    String sourceString = "<b>" + "Periksalah Ke Dokter";
+                    p48.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
-                }
+            }
 
         });
     }
