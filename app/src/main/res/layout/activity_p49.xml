@@ -5,12 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="file.project.diagnosaanak.penyakit.p50"
-<<<<<<< HEAD
-    android:background="@drawable/p1"
-=======
-    android:background="@drawable/p50"
->>>>>>> origin/master
+    tools:context="file.project.diagnosaanak.penyakit.p49"
+    android:background="@drawable/p49"
     android:orientation="vertical">
 
 

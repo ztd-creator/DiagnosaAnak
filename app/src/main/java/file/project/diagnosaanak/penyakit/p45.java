@@ -39,7 +39,11 @@ public class p45 extends AppCompatActivity {
                 mulai.setVisibility(View.GONE);
                 findViewById(R.id.cardviewDiagnosa).setVisibility(View.VISIBLE);
 
+<<<<<<< HEAD
                 p45.setText("Adakah ketidaknyamanan atau gatal di kemaluan anak anda?");
+=======
+                p45.setText("Apakah sakit di penis itu hanya saat buang air kecil?");
+>>>>>>> origin/master
             }
         });
         ya.setOnClickListener(new View.OnClickListener() {
@@ -64,12 +68,22 @@ public class p45 extends AppCompatActivity {
                 }
 
                 else if(posisi.equals("d3")) {
+<<<<<<< HEAD
                     p45.setText("Adakah bengkak di skrotum yang tidak nyeri?");
                     posisi = "dl3";
                 }
 
                 else if (posisi.equals("dl4")) {
                     String sourceString = "<b>" + "// Masih Mau dikembangkan------------------------------------------------";
+=======
+                    p45.setText("Adakah salah satu hal berikut pada bengkaknya? 1. Lebih kecil atau hilang di pagi hari 2. Membesar ketika si anak menangis atau batuk");
+                    posisi = "dl3";
+                }
+
+                else if (posisi.equals("dl3")) {
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB Si anak mungkin menderita hernia, yaitu sebagian kecil usus menerobos bagian yang lemah di dinding perut. Kondisi ini paling banyak terjadi pada bayi."  +
+                            "Tindakan " + "</b>" + "Dokter akan memeriksa si anak. Bila diagnosa ini benar, hernianya harus diperbaiki untuk mencegah kemungkinan terjepitnya bagian usus tersebut. Operasinya dilakukan di bawah pembiusan umum.";
+>>>>>>> origin/master
                     p45.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
                     tdk.startAnimation(animFadeOut);
@@ -102,7 +116,11 @@ public class p45 extends AppCompatActivity {
                 }
 
                 else if (posisi.equals("d6")) {
+<<<<<<< HEAD
                     String sourceString = "<b>" + "Balanitis, yaitu kulup meradang karena infeksi atau iritasi bahan kimia, adalah kemungkinan penyebabnya." + "<b>" +
+=======
+                    String sourceString = "<b>" + "Kemungkinan Penyebab dan TIndakan" + "</b> "  +  "Balanitis, yaitu kulup meradang karena infeksi atau iritasi bahan kimia, adalah kemungkinan penyebabnya."  +
+>>>>>>> origin/master
                             "Tindakan " + "</b>" + " Pastikan bahwa penis dan kulup si anak sering dibilas air. Bila gejalanya tidak hilang dalam 48 jam, periksakan ke dokter. Dokter mungkin akan meresepkan krim antibiotika  atau antijamur. Selanjutnya, jangan gunakan sabun berpewangi dan gunakanlah deterjen biologis untuk mencuci pakaian. Bila kondisi ini sering terjadi, mungkin dokter akan menyarankan dikhitan.";
                     p45.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
@@ -112,7 +130,11 @@ public class p45 extends AppCompatActivity {
                 }
 
                 else if (posisi.equals("d7")) {
+<<<<<<< HEAD
                     String sourceString = "<b>" + "Bahaya ! Bawa Ke Rumah Sakit Sekarang Juga" + "</b> " + "<b>" + "Kemungkinan Penyebab Kulup yang tidak bias kembali akan bias merusakkan pasokan darah ke kepala penis bila tidak segera ditangani." + "<b>" +
+=======
+                    String sourceString = "<b>" + "Bahaya ! Bawa Ke Rumah Sakit Sekarang Juga" + "</b> " + "<b>" + "Kemungkinan Penyebab" + "<b>" + "Kulup yang tidak bias kembali akan bias merusakkan pasokan darah ke kepala penis bila tidak segera ditangani."  +
+>>>>>>> origin/master
                             "Tindakan " + "</b>" + " Sambil menunggu bantuan medis, kompres dengan es untuk meredakan sakitnya. Di rumah sakit, dokter mungkin akan mencoba mengembalikan kulup, namun mungkin diperlukan sayatan kecil di bawah bius lokal. Khitan segera biasanya diperlukan untuk mencegah masalah itu timbul kembali.";
                     p45.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);

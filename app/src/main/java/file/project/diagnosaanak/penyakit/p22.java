@@ -109,16 +109,16 @@ public class p22 extends AppCompatActivity {
                     ya.setVisibility(View.GONE);
                     tdk.setVisibility(View.GONE);}
 
-                  else
-                    if(posisi.equals("dl1")){
-                        String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Bawa ke Dokter Sekarang Juga" +
-                                "Kemungkinan penyebab. Kebingungan si anak mungkin akibat infeksi parah, misalnya pneumonia atau infeksi saluran kemih." +
-                                "Tindakan. Turunkan demamnya dan pastikan si anak banyak minum. Bila setelah memeriksa dokter menemukan ada tempat yang jelas terkana infeksi, mungkin akan diberikan antibiotik. Bila tidak, mungkin perlu dirujuk ke rumah sakit guna menjalani beberapa tes untuk mencari penyebab dan menetapkan pengobatan yang tepat.";
-                        p22.setText(Html.fromHtml(sourceString));
-                        ya.startAnimation( animFadeOut );
-                        tdk.startAnimation( animFadeOut );
-                        ya.setVisibility(View.GONE);
-                        tdk.setVisibility(View.GONE);}
+                else
+                if(posisi.equals("dl1")){
+                    String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Bawa ke Dokter Sekarang Juga" +
+                            "Kemungkinan penyebab. Kebingungan si anak mungkin akibat infeksi parah, misalnya pneumonia atau infeksi saluran kemih." +
+                            "Tindakan. Turunkan demamnya dan pastikan si anak banyak minum. Bila setelah memeriksa dokter menemukan ada tempat yang jelas terkana infeksi, mungkin akan diberikan antibiotik. Bila tidak, mungkin perlu dirujuk ke rumah sakit guna menjalani beberapa tes untuk mencari penyebab dan menetapkan pengobatan yang tepat.";
+                    p22.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
 

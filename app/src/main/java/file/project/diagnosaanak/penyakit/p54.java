@@ -49,7 +49,11 @@ public class p54 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null){
+<<<<<<< HEAD
                         String sourceString = "<b>" + "Pubertas anak anda sudah dimulai terlalu dini. Seringkali tidak diketahui apa penyebab pubertas terlalu dini, namun pada beberapa kasus hal itu diduga karena ada masalah dipusat kendali pembuatan hormone di otak. Periksakanlah ke dokter." + "<b>" +
+=======
+                        String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" +  "Pubertas anak anda sudah dimulai terlalu dini. Seringkali tidak diketahui apa penyebab pubertas terlalu dini, namun pada beberapa kasus hal itu diduga karena ada masalah dipusat kendali pembuatan hormone di otak. Periksakanlah ke dokter." + "<b>" +
+>>>>>>> origin/master
                                 "Tindakan "+ "</b>"+ "Dokter akan memeriksa hasil tes darah dan merujuk si anak ke seorang spesialis. Bila sudah memasuki pubertas , si anak mungkin akan diberi resep obat untuk memperlambat prosesnya. Obat itu akan menjaga agar penurunan laju pertumbuh";
                         p54.setText(Html.fromHtml(sourceString));
                         ya.startAnimation( animFadeOut );
@@ -59,7 +63,11 @@ public class p54 extends AppCompatActivity {
 
 
                 else if(posisi.equals("d3")){
+<<<<<<< HEAD
                     String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB Adalah biasa bila seorang gadis mengalami kekacauan jadwal haid di tahun-tahun pertama. Bisa sampai 40 siklus sebelum tubuh memapankan polanya. Namun kemungkinan hamil juga perlu dipertimbangkan.";
+=======
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" + "Adalah biasa bila seorang gadis mengalami kekacauan jadwal haid di tahun-tahun pertama. Bisa sampai 40 siklus sebelum tubuh memapankan polanya. Namun kemungkinan hamil juga perlu dipertimbangkan.";
+>>>>>>> origin/master
                     p54.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
