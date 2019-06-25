@@ -228,7 +228,7 @@ public class p49 extends AppCompatActivity {
                     }
 
                     else if(posisi.equals("dl2")) {
-                        p49.setText("Anda khawatir si anak akanb mengidap kaki leper?");
+                        p49.setText("Anda khawatir si anak akan mengidap kaki leper?");
                         posisi = "dlll2";
                     }
 
@@ -242,7 +242,7 @@ public class p49 extends AppCompatActivity {
                     }
 
                     else if(posisi.equals("dlll2")) {
-                        p49.setText("Anda khawatir si anak akanb mengidap kaki leper?");
+                        p49.setText("Apakah jari - jari si anak bengkok atau melengkung?");
                         posisi = "dlllll2";
                     }
 
