@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="file.project.diagnosaanak.penyakit.p35"></activity>
+        <activity android:name="file.project.diagnosaanak.penyakit.p49"></activity>
+        <activity android:name="file.project.diagnosaanak.penyakit.p44" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p35" />
         <activity android:name="file.project.diagnosaanak.penyakit.p34" />
         <activity android:name="file.project.diagnosaanak.penyakit.p33" />
         <activity android:name="file.project.diagnosaanak.penyakit.p32" />
@@ -29,6 +31,18 @@
         <activity android:name="file.project.diagnosaanak.penyakit.p23" />
         <activity android:name="file.project.diagnosaanak.penyakit.p22" />
         <activity android:name="file.project.diagnosaanak.penyakit.p21" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p41" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p42" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p43" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p45" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p46" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p47" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p48" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p50" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p51" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p52" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p53" />
+        <activity android:name="file.project.diagnosaanak.penyakit.p54" />
         <activity
             android:name="file.project.diagnosaanak.penyakit.p1"
             android:theme="@style/AppTheme.noActionBar" />
