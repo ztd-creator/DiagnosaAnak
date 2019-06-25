@@ -76,7 +76,7 @@ public class P3 extends AppCompatActivity {
 
                 else if(posisi.equals("d4")){
                     String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "BAWA KE DOKTER SEKRANG JUGA" +
-                            "Kemungkinan Penyebab Bronkhiolitis (Inveksi virus disaluran nafas paru-paru ) atau pneumonia  (inveksi virus atau bakteri ada gelumbung udara di paru-paru)\n" + "<b>" +
+                            "Kemungkinan Penyebab Bronkhiolitis (Inveksi virus disaluran nafas paru-paru ) atau pneumonia  (inveksi virus atau bakteri ada gelumbung udara di paru-paru)" + "<b>" +
                             "tindakan "+ "</b>"+ "Tindakan Dokter atau memeriksa dan mungkin merujuk si bayi kerumah sakit untuk menjalani beberapa tes, misalnya sinar-X dan pengukuran tingkat oksigen darah. Pengobatan bisa mencakup antibiotika";
                     p3.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
@@ -107,7 +107,7 @@ public class P3 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);}
 
                 else if(posisi.equals("d7")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB. " +
+                    String sourceString = "<b>" + "Kemungkinan Penyebab" + "</b> " +
                             "Gastroenteritis, yaitu infeksi sistem pencernaan, adalah kemungkinan terbesar gejala seperti ini, terutama bila si bayi juga muntah. " + "<b>" +
                             "tindakan "+ "</b>"+ "TINDAKAN. \n" +
                             "Dokter akan memeriksa apakah si bayi mengalami dehidrasi.  Dokter juga akan memberikan beberapa saran pencegahan dehidrasi pada bayi dan langkah-langkah menangani gastroenteritis pada bayi.";
@@ -118,7 +118,7 @@ public class P3 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);}
 
                 else if(posisi.equals("d8")){
-                    String sourceString = "<b>" + "kemungkinan penyebab" + "</b> " + "KEMUNGKINAN PENYEBAB. " +
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB. " +
                             "Sebagian bayi bisa merasa tidak nyaman atau demam ringan dalam seminggu setelah diimunisasi rutin. " + "<b>" +
                             "tindakan "+ "</b>"+  "TINDAKAN. " +
                             "Ikuti saran-saran menghadapi demam setelah imunisasi";

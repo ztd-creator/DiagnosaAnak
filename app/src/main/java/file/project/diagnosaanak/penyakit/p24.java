@@ -99,28 +99,28 @@ public class p24 extends AppCompatActivity {
                     p24.setText("apakah ucapan si anak tertegun-tegun atau apakah dia gagap?");
                     posisi="d3";}
 
-                     else if(posisi.equals("d3")){
-                        p24.setText("Segera periksa ke dokter!");
-                        ya.startAnimation( animFadeOut );
-                        tdk.startAnimation( animFadeOut );
-                        ya.setVisibility(View.GONE);
-                        tdk.setVisibility(View.GONE);}
+                else if(posisi.equals("d3")){
+                    p24.setText("Segera periksa ke dokter!");
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
-                      else
-                        if(posisi.equals("dl1")){
-                            String sourceString = "<b>" + "Kemungkinan penyebab. Kelambatan memahami pengucapan dan bahasa mungkin disebabkan oleg gangguan pendengaran atau keterlambatan perkembangan umum. Pada sebagian anak, kurangnya pemahaman bisa disebabkan oleh kelainan bahasa, yaitu tidak bisa memproses atau tidak memproduksi Informasi verbal secara normal. Periksakanlah ke dokter." +
-                                    "Tindakan. Dokter akan memeriksa pendengaran dan perkembangan umum si anak, dan merujuknya ke seorang terapis bicara atau mengobatinya bila hal itu disebabkan oleh gangguan sistem pendengaran. Sementara itu, teruslah memberanikan si anak untuk berbicara";
-                            p24.setText(Html.fromHtml(sourceString));
-                            ya.startAnimation( animFadeOut );
-                            tdk.startAnimation( animFadeOut );
-                            ya.setVisibility(View.GONE);
-                            tdk.setVisibility(View.GONE);}
-
-
+                else
+                if(posisi.equals("dl1")){
+                    String sourceString = "<b>" + "Kemungkinan penyebab. Kelambatan memahami pengucapan dan bahasa mungkin disebabkan oleg gangguan pendengaran atau keterlambatan perkembangan umum. Pada sebagian anak, kurangnya pemahaman bisa disebabkan oleh kelainan bahasa, yaitu tidak bisa memproses atau tidak memproduksi Informasi verbal secara normal. Periksakanlah ke dokter." +
+                            "Tindakan. Dokter akan memeriksa pendengaran dan perkembangan umum si anak, dan merujuknya ke seorang terapis bicara atau mengobatinya bila hal itu disebabkan oleh gangguan sistem pendengaran. Sementara itu, teruslah memberanikan si anak untuk berbicara";
+                    p24.setText(Html.fromHtml(sourceString));
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
 
 
 
 
-                    }
+
+
+            }
         });
     }}

@@ -58,7 +58,7 @@ public class p28 extends AppCompatActivity {
                 else
                 if(posisi.equals("d2")){
                     String sourceString = "<b>" + "Bahaya! Bawa ke Rumah Sakit Sekarang Juga!" + "</b> " +
-                             "Kemungkinan penyebab dan tindakan. Hilang penglihatan yang terjadi tiba-tiba selalu merupakan gejala serius, walaupun mungkin hanya berlangsung singkat atau menyerang hanya satu mata. Mata si anak perlu diteliti oleh seorang spesialis. Mungkin si anak juga perlu dirawat inap untuk menjalani beberapa tes.";
+                            "Kemungkinan penyebab dan tindakan. Hilang penglihatan yang terjadi tiba-tiba selalu merupakan gejala serius, walaupun mungkin hanya berlangsung singkat atau menyerang hanya satu mata. Mata si anak perlu diteliti oleh seorang spesialis. Mungkin si anak juga perlu dirawat inap untuk menjalani beberapa tes.";
                     p28.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
