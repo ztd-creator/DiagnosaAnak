@@ -65,7 +65,8 @@ public class p44 extends AppCompatActivity {
                 }
 
                 else if(posisi.equals("dll2")){
-                    String sourceString = "<b>" + "Periksalah Ke Dokter";
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" +   "si anak mungkin terserang sembelit, berakibat tersumbatnya sebagian rektum. gejalanya itu terjadi karena ada cairan tinja yang merembes melalui sumbatan. periksakan ke dokter." +
+                            "<b>" + "Tindakan "+ "</b>"+ "dokter mungkin akan meresepkan urus-urus untuk menyingkirkan sumbatan, serta mungkin menyarankan menambahkan buah dan sayuran dalam makanan si anak. bila menduga sembelitnya karena penyebab fisik atau perilaku yang tersembunyi, mungkin dokter akan merujuk ke spesialis.";
                     p44.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );
@@ -73,8 +74,8 @@ public class p44 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);}
 
                 else if(posisi.equals("dlll2")){
-                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" +   "si anak mungkin terserang sembelit, berakibat tersumbatnya sebagian rektum. gejalanya itu terjadi karena ada cairan tinja yang merembes melalui sumbatan. periksakan ke dokter." +
-                            "<b>" + "Tindakan "+ "</b>"+ "dokter mungkin akan meresepkan urus-urus untuk menyingkirkan sumbatan, serta mungkin menyarankan menambahkan buah dan sayuran dalam makanan si anak. bila menduga sembelitnya karena penyebab fisik atau perilaku yang tersembunyi, mungkin dokter akan merujuk ke spesialis.";
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB" + "<b>" +   "biasanya mengajari buang air tidak perlu selama itu. mungkin si anak membangkang terhadap usaha anda mengajarinya. walau jarang, kadang-kadang ada penyebab fisik yang membuat buruknya pengendalian ini. konsultasikan ke dokter anak." +
+                            "<b>" + "Tindakan "+ "</b>"+ "bila anak tidak ada penyebab fisik, mungkin dokter akan menyarankan anda hentikan mengajari anak buang air. idealnya, tunggu sampai si anak mau bekerjasama sebelum memulainya lagi.";
                     p44.setText(Html.fromHtml(sourceString));
                     ya.startAnimation( animFadeOut );
                     tdk.startAnimation( animFadeOut );

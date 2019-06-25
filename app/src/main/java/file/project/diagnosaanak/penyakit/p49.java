@@ -148,8 +148,8 @@ public class p49 extends AppCompatActivity {
                     tdk.setVisibility(View.GONE);
                 }
 
-                else if (posisi.equals("dllll2")) {
-                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN" + "<b>" + " Bila si anak terlahir dengan kaki menekuk, mungkin taka da yang perlu dicemaskan. Namun bila hal itu menimbulkan sakit atau malu, operasi untuk meluruskan jari kaki bisa disarankan setelah si anak lebih besar. Bila timbulnya baru-baru saja, hal itu mungkin disebabkan oleh sepatu atau kaus kaki yang kekecilan. Pastikan si anak memakai sepatu dan kaus kaki yang pas. ";
+                else if (posisi.equals("dlllll2")) {
+                    String sourceString = "<b>" + "KEMUNGKINAN PENYEBAB DAN TINDAKAN" + "<b>" + " Bila si anak terlahir dengan kaki menekuk, mungkin tak ada yang perlu dicemaskan. Namun bila hal itu menimbulkan sakit atau malu, operasi untuk meluruskan jari kaki bisa disarankan setelah si anak lebih besar. Bila timbulnya baru-baru saja, hal itu mungkin disebabkan oleh sepatu atau kaus kaki yang kekecilan. Pastikan si anak memakai sepatu dan kaus kaki yang pas. ";
                     p49.setText(Html.fromHtml(sourceString));
                     ya.startAnimation(animFadeOut);
                     tdk.startAnimation(animFadeOut);
