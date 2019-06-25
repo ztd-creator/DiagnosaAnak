@@ -28,10 +28,12 @@ import file.project.diagnosaanak.penyakit.p35;
 import file.project.diagnosaanak.penyakit.p41;
 import file.project.diagnosaanak.penyakit.p42;
 import file.project.diagnosaanak.penyakit.p43;
+import file.project.diagnosaanak.penyakit.p44;
 import file.project.diagnosaanak.penyakit.p45;
 import file.project.diagnosaanak.penyakit.p46;
 import file.project.diagnosaanak.penyakit.p47;
 import file.project.diagnosaanak.penyakit.p48;
+import file.project.diagnosaanak.penyakit.p49;
 import file.project.diagnosaanak.penyakit.p50;
 import file.project.diagnosaanak.penyakit.p51;
 import file.project.diagnosaanak.penyakit.p52;
@@ -198,8 +200,9 @@ public class ListPenyakit extends AppCompatActivity {
     }
     public void p44(View v){
         Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
-
+        startActivity(new Intent(getApplicationContext(), p44.class));
     }
+
     public void p45(View v){
         Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
         startActivity(new Intent(getApplicationContext(), p45.class));
@@ -218,8 +221,9 @@ public class ListPenyakit extends AppCompatActivity {
     }
     public void p49(View v){
         Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
-
+        startActivity(new Intent(getApplicationContext(), p49.class));
     }
+
     public void p50(View v){
         Toast.makeText(getApplicationContext(),"tes",Toast.LENGTH_LONG).show();
         startActivity(new Intent(getApplicationContext(), p50.class));
