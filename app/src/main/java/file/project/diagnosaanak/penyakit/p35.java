@@ -169,11 +169,65 @@ public class p35 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(posisi==null||posisi.equals("rev")){
-                    p35.setText("apakah usia si anak di bawah 1 tahun dan apakah dia tampak lesu?");
-                    posisi="d2"; }
+                    p35.setText("Apakah gusi si anak memerah dan sakit?");
+                    posisi="d4"; }
 
+                else if(posisi.equals("dl1")){
+                    p35.setText("Apakah di lecet itu terdapat kerak berwarna madu?");
+                    posisi="d2";}
 
+                else if(posisi.equals("d2")){
+                    p35.setText("Apakah bibir dan kulit di sekitarnya merah dan pecah?");
+                    posisi="d3";}
 
+                else if(posisi.equals("d3")){
+                    p35.setText("PERIKSAKAN KE DOKTER BILA BELUM BISA TERDIAGNOSA DARI DIAGRAM INI ");
+                    ya.startAnimation( animFadeOut );
+                    tdk.startAnimation( animFadeOut );
+                    ya.setVisibility(View.GONE);
+                    tdk.setVisibility(View.GONE);}
+
+                    else if(posisi.equals("d4")){
+                        p35.setText("adakah busa kuning atau bercak putih di dalam mulut atau lidah si anak?");
+                        posisi="d5";}
+
+                    else
+                    if(posisi.equals("dl2")){
+                        String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Kemungkinan penyebab dan tindakan. Tumbuh gigi bisa menimbulkan bengkak merah di gusi. Beri si bayi cincin karet khusus untuk digigit-gigit. Gel pengoles gusi yang dijual bebas juga akan bisa menolong. Berikan obat pereda nyeri pada dosis sesuai anjuran, bila perlu.";
+                        p35.setText(Html.fromHtml(sourceString));
+                        ya.startAnimation( animFadeOut );
+                        tdk.startAnimation( animFadeOut );
+                        ya.setVisibility(View.GONE);
+                        tdk.setVisibility(View.GONE);}
+
+                    else if(posisi.equals("d5")){
+                        p35.setText("adakah satu atau lebih lepuh atau tukak di mulut si anak?");
+                        posisi="d6";}
+
+                    else if(posisi.equals("d6")){
+                        p35.setText("adakah bagian yang perih di bagian dalam pipi atau di sisi lidah si anak?");
+                        posisi="d7";}
+
+                    else if(posisi.equals("d7")){
+                        p35.setText("PERIKSAKAN KE DOKTER BILA BELUM BISA TERDIAGNOSA DARI DIAGRAM INI ");
+                        ya.startAnimation( animFadeOut );
+                        tdk.startAnimation( animFadeOut );
+                        ya.setVisibility(View.GONE);
+                        tdk.setVisibility(View.GONE);}
+
+                        else if(posisi.equals("dl3")){
+                            p35.setText("apakah si anak juga demam dan/atau tampak lesu?");
+                            posisi="dl4";}
+
+                        else
+                        if(posisi.equals("dl4")){
+                            String sourceString = "<b>" + "kemungkinan penyebab dan tindakan" + "</b> " + "Kemungkinan penyebab. Mungkin ini karena sariawan. Hal ini sering timbul tanpa penyebab jelas namum cenderung kambuh di saat stress atau terkena cedera ringan misalnya di saat menggosok gigi. Sariawan bisa sangat nyeri namun tidak berbahaya." +
+                                    "Tindakan. Berkumur dengan larutan bikarbonat akan bisa meredakan nyerinya. Banyak obat bebas yang bisa meredakan nyerinya serta membantu penyembuhan sariawan. Bila ada sariawan yang tidak kambuh dalam 10 hari atau bila timbul beberapa sariawan sekaligus, periksakanlah ke dokter.";
+                            p35.setText(Html.fromHtml(sourceString));
+                            ya.startAnimation( animFadeOut );
+                            tdk.startAnimation( animFadeOut );
+                            ya.setVisibility(View.GONE);
+                            tdk.setVisibility(View.GONE);}
 
 
 
